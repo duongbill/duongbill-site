@@ -101,9 +101,10 @@
 }
 @media only screen and (min-width: 280px) and (max-width: 599px) {
     #home {
-        width: 100%; /* Để phần tử fit theo kích thước màn hình */
-        max-width: 100%;
-        height: auto; /* Hoặc bạn có thể đặt một chiều cao phù hợp */
+        background: url('uploads/bgchinh.png') no-repeat center center; 
+        background-size: cover; /* Đảm bảo ảnh phủ toàn bộ khu vực */
+        height: 100vh; /* Đặt chiều cao bằng toàn bộ màn hình */
+        width: 100%; /* Chiều rộng full màn hình */
     }
 
 	#mainNav {
