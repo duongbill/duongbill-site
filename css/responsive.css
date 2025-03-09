@@ -101,14 +101,12 @@
 }
 @media only screen and (min-width: 280px) and (max-width: 599px) {
 	#home {
-		background: url('uploads/m4.png') no-repeat center center; 
-		background-size: contain; /* Đảm bảo ảnh không bị cắt */
-		width: 375px;  /* Đặt chiều rộng cố định */
-		height: 680px; /* Đặt chiều cao cố định */
-		max-width: 100%; /* Đảm bảo không bị tràn màn hình nhỏ hơn */
-		margin: 0 auto; /* Căn giữa */
-	}
+		background: url('/uploads/bgbill.png') no-repeat center center !important; 
+		background-size: contain !important;
+		max-width: 100% !important;
+		margin: 0 auto;
 	
+}
 	#mainNav {
 		background-color: #333333;
 	}
