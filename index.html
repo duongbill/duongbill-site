@@ -41,7 +41,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </head>
 <body id="page-top" class="politics_version">
-
+    <div id="loading-screen">
+        <img src="uploads/embill.jpg" alt="Loading...">
+        
+        <p >Loading...</p>
+    </div>
+    
     <!-- LOADER -->
     <div id="preloader">
         <div id="main-ld">
@@ -567,6 +572,14 @@
         function closeQRModal() {
             document.getElementById("qrModal").style.display = "none";
         }
+    </script>
+    <script>
+        window.onload = function () {
+    setTimeout(() => {
+        document.getElementById("loading-screen").style.display = "none";
+    }, 1000); // 1 giây sau khi load xong sẽ ẩn loading
+};
+
     </script>
 </body>
 </html>
