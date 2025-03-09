@@ -100,12 +100,12 @@
 	}
 }
 @media only screen and (min-width: 280px) and (max-width: 599px) {
-	#home {
-		width: 600px;
-        height: 100%;
+    #home {
+        width: 100%; /* Để phần tử fit theo kích thước màn hình */
         max-width: 100%;
-        margin: 0 auto;
-	}
+        height: auto; /* Hoặc bạn có thể đặt một chiều cao phù hợp */
+    }
+
 	#mainNav {
 		background-color: #333333;
 	}
