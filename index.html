@@ -28,14 +28,17 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </head>
 <body id="page-top" class="politics_version">
 
@@ -72,7 +75,7 @@
               <a class="nav-link js-scroll-trigger" href="#portfolio">Photos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#testimonials">Skills</a>
+              <a class="nav-link js-scroll-trigger" href="#testimonials">IQs</a>
             </li>
 			<li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#blog">News</a>
@@ -85,7 +88,7 @@
       </div>
     </nav>
 	
-	<section id="home" class="main-banner parallaxie" style="background: url('uploads/bgbill.png')">
+	<section id="home" class="main-banner parallaxie" style="background: url('uploads/a1.jpg')">
 		<div class="heading">
 			<h1>hello i'm Duong</h1>
 			<p>"This is where I share basic information about myself, <br> my academic journey in Information Technology, and my life."</p>
@@ -157,6 +160,11 @@
             <a href="https://zalo.me/0985082004" target="_blank" class="social-icon zalo">
                 <img src="./uploads/logo-zalo-vector-16.jpg" alt="Zalo">
             </a>
+            <a href="uploads/qr1.jpg" data-lightbox="qr-code" class="social-icon qr">
+                <i class="fas fa-qrcode"></i>
+            </a>
+            
+            
             
         </div>
                         
@@ -550,5 +558,15 @@
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
    
+
+    <script>
+        function showQRModal() {
+            document.getElementById("qrModal").style.display = "flex";
+        }
+
+        function closeQRModal() {
+            document.getElementById("qrModal").style.display = "none";
+        }
+    </script>
 </body>
 </html>

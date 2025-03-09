@@ -669,6 +669,11 @@ xclip
     color: #fff;
     transform: scale(1.1);
 }
+.qr:hover {
+    background-color: #fd76e9;
+    color: #fff;
+    transform: scale(1.1);
+}
 
 .zalo img {
     width: 24px;
