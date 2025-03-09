@@ -106,7 +106,7 @@
         height: 100vh !important;
         width: 100% !important;
     }
-}
+
 
 	#mainNav {
 		background-color: #333333;
@@ -122,7 +122,7 @@
 		border-color: rgba(255,255,255);
 	}
 	.heading h1{
-		margin-top: 60%;
+		margin-top: 300px;
 		font-size: 28px;
 	}
 	.heading p {
