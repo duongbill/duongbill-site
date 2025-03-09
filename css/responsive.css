@@ -100,6 +100,12 @@
 	}
 }
 @media only screen and (min-width: 280px) and (max-width: 599px) {
+	#home {
+        background-size: cover; /* Hiển thị toàn bộ ảnh, không bị méo */
+        background-position: center; /* Căn giữa ảnh */
+        background-repeat: no-repeat; /* Không lặp lại ảnh */
+        height: 100vh; /* Chiều cao 100% màn hình */
+    }
 	#mainNav {
 		background-color: #333333;
 	}
