@@ -101,12 +101,12 @@
 }
 @media only screen and (min-width: 280px) and (max-width: 599px) {
 	#home {
-		background: url('/uploads/bgbill.png') no-repeat center center !important; 
+		background: url('/uploads/bgphonebill.png') no-repeat center center !important; 
 		background-size: contain !important;
 		max-width: 100% !important;
 		margin: 0 auto;
 	
-}
+	}
 	#mainNav {
 		background-color: #333333;
 	}
