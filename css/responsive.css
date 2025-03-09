@@ -101,11 +101,14 @@
 }
 @media only screen and (min-width: 280px) and (max-width: 599px) {
 	#home {
-        background-size: 100% auto; /* Độ rộng 100%, chiều cao tự động */
-        background-position: center top;
-        background-repeat: no-repeat;
-        max-height: 70vh; /* Giới hạn chiều cao tối đa */
-    }
+		background: url('uploads/m4.png') no-repeat center center; 
+		background-size: contain; /* Đảm bảo ảnh không bị cắt */
+		width: 375px;  /* Đặt chiều rộng cố định */
+		height: 680px; /* Đặt chiều cao cố định */
+		max-width: 100%; /* Đảm bảo không bị tràn màn hình nhỏ hơn */
+		margin: 0 auto; /* Căn giữa */
+	}
+	
 	#mainNav {
 		background-color: #333333;
 	}
