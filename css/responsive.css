@@ -101,11 +101,12 @@
 }
 @media only screen and (min-width: 280px) and (max-width: 599px) {
     #home {
-        background: url('uploads/bgchinh.png') no-repeat center center; 
-        background-size: cover; /* Đảm bảo ảnh phủ toàn bộ khu vực */
-        height: 100vh; /* Đặt chiều cao bằng toàn bộ màn hình */
-        width: 100%; /* Chiều rộng full màn hình */
+        background: url('/uploads/bgphonebill.png') no-repeat center center !important;
+        background-size: cover !important;
+        height: 100vh !important;
+        width: 100% !important;
     }
+}
 
 	#mainNav {
 		background-color: #333333;
