@@ -167,5 +167,19 @@
 	.footer-distributed .footer-left{
 		text-align: center;
 	}
+	.social-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 20px;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background-color: #f1f1f1;
+		text-decoration: none;
+		font-size: 20px;
+		color: #333;
+		transition: background 0.3s ease, transform 0.3s ease;
+	}
 	
 }
