@@ -181,5 +181,95 @@
 		color: #333;
 		transition: background 0.3s ease, transform 0.3s ease;
 	}
+	.section.wb {
+		background-color: #ffffff;
+		padding: 70px 0 0 0;
+	}
 	
+	.weather-widget {
+		width: 350px;
+		height: max-content;
+		background-color: #f7f7f7;
+		border-radius: 20px;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+		padding: 20px;
+		box-sizing: border-box;
+		font-family: sans-serif;
+		margin:auto;
+		
+		margin-bottom: 70px;
+	 
+	  }
+	  .weather-widget form {
+		border: 1px solid #ddd;
+		display: flex;
+		border-radius: 20px;
+		justify-content: space-between;
+	  }
+	  .weather-widget input, .weather-widget button {
+		border: none;
+		background-color: transparent;
+		outline: none;
+		padding: 10px;
+		box-sizing: border-box;
+	  }
+	  .weather-widget .result {
+		padding-top: 15px;
+		text-align: center;
+	  }
+	  .weather-widget .name {
+		font-weight: bold;
+		font-size: large;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	  }
+	  .weather-widget .temperature img {
+		width: 100px;
+		filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.3));
+	  }
+	  .weather-widget .temperature figcaption {
+		font-size: 2.5em;
+	  }
+	  .weather-widget .description {
+		padding: 5px 0 20px;
+		font-size: 1.2em;
+	  }
+	  .weather-widget ul {
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	  }
+	  .weather-widget li {
+		background-color: #f78a55;
+		color: #fff;
+		border-radius: 10px;
+		padding: 15px 5px;
+		font-weight: bold;
+		font-size: small;
+	  }
+	  .weather-widget li i {
+		font-size: 1.5em;
+		margin: 10px 0;
+		display: block;
+	  }
+	  .weather-widget li:nth-child(2) {
+		background-color: #b56291;
+	  }
+	  .weather-widget li:nth-child(3) {
+		background-color: #48567b;
+	  }
+
+	  button#sendMessageButton {
+		background: rgb(255, 255, 255);
+	}
+	button#sendMessageButton:hover {
+		background: rgb(5, 5, 5);
+	
+	}
+
+
+
 }

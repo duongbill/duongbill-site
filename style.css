@@ -473,6 +473,12 @@ xclip
     padding: 70px 0;
 }
 
+.section wb{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: 50px 0;
+} 
 .noover {
     overflow: visible;
 }
@@ -2458,7 +2464,7 @@ select.mobile-device {
     color: #999 !important;
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1 !important:
+    line-height: 1 !important;
 }
 
 .stat-wrap p {
@@ -2467,7 +2473,7 @@ select.mobile-device {
     margin: 0;
     font-weight: 300;
     padding: 4px 0 0;
-    line-height: 1 !important:
+    line-height: 1 !important;
 }
 
 #preloader {
@@ -2573,3 +2579,84 @@ select.mobile-device {
     color: #333; /* Màu chữ */
     font-weight: bold;
 }
+
+.section.wb {
+    background-color: #ffffff;
+    padding: 70px 0 0 0;
+}
+
+.weather-widget {
+    width: 700px;
+    height: max-content;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin:auto;
+    
+    margin-bottom: 70px;
+ 
+  }
+  .weather-widget form {
+    border: 1px solid #ddd;
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-between;
+  }
+  .weather-widget input, .weather-widget button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .weather-widget .result {
+    padding-top: 15px;
+    text-align: center;
+  }
+  .weather-widget .name {
+    font-weight: bold;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .weather-widget .temperature img {
+    width: 100px;
+    filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.3));
+  }
+  .weather-widget .temperature figcaption {
+    font-size: 2.5em;
+  }
+  .weather-widget .description {
+    padding: 5px 0 20px;
+    font-size: 1.2em;
+  }
+  .weather-widget ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .weather-widget li {
+    background-color: #f78a55;
+    color: #fff;
+    border-radius: 10px;
+    padding: 15px 5px;
+    font-weight: bold;
+    font-size: small;
+  }
+  .weather-widget li i {
+    font-size: 1.5em;
+    margin: 10px 0;
+    display: block;
+  }
+  .weather-widget li:nth-child(2) {
+    background-color: #b56291;
+  }
+  .weather-widget li:nth-child(3) {
+    background-color: #48567b;
+  }
