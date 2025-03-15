@@ -691,6 +691,24 @@ xclip
     
 }
 
+.locket img {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.3s ease;
+   
+}
+.locket:hover {
+    background-color: #EEAB01;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.locket:hover img {
+    content: url('./uploads/lk1.png');
+    
+}
+
+
 
 .right-box-pro{
 	position: relative;
