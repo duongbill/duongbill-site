@@ -88,6 +88,9 @@
 			<li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Liên hệ</a>
             </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#trip">Đi chơi</a>
+              </li> -->
           </ul>
         </div>
       </div>
@@ -393,19 +396,23 @@
 			</div>
 		</div>
 	</div>
+
+
 	
     <div id="testimonials" class="section wb">
         <div class="container">
           <div class="section-title text-left">
             <h3>Thông tin thời tiết</h3>
-            <p>Thông tin thời tiết hiện tại của các thủ đô trên thế giới.</p>
+            <p>Thông tin thời tiết hiện tại của các thành phố, đất nước trên thế giới.</p>
           </div>
         </div>
-      </div>
+    </div>
+
     
-      <main class="weather-widget">
+    
+    <main class="weather-widget">
         <form>
-          <input type="text" id="name" autocomplete="off">
+          <input type="text" id="name" autocomplete="off" placeholder="Nhập tên thành phố...">
           <button>
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -420,10 +427,10 @@
             <img src="https://openweathermap.org/img/wn/10d@4x.png">
             <figcaption>
               <span>23</span>
-              <sup>o</sup>
+              <sup>o</sup>C
             </figcaption>
           </figure>
-          <p class="description">overcast clouds</p>
+          <p class="description">Mây nhiều</p>
           <ul>
             <li>
               <span>Mây</span>
@@ -442,52 +449,58 @@
             </li>
           </ul>
         </section>
-      </main>
-      
+    </main>
     
-      
-      <script>
+    <script>
         const appId = 'd11347d55a333d532b01a700638d7b7b';
         const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${appId}`;
-  const city = document.querySelector('.name');
-  const form = document.querySelector('form');
-  const temperature = document.querySelector('.temperature');
-  const description = document.querySelector('.description');
-  const valueSearch = document.getElementById('name');
-  const clouds = document.getElementById('clouds');
-  const humidity = document.getElementById('humidity');
-  const pressure = document.getElementById('pressure');
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (valueSearch.value !== '') {
-      searchWeather();
-    }
-  });
-
-  const searchWeather = async () => {
-    const resp = await fetch(`${url}&q=${valueSearch.value}`);
-    const data = await resp.json();
-    console.log(data);
-
-    if (data.cod === 200) {
-      city.querySelector('figcaption').innerHTML = data.name;
-      city.querySelector('img').src = `https://flagsapi.com/${data.sys.country}/shiny/32.png`;
-      
-      temperature.querySelector('img').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
-      temperature.querySelector('span').innerText = Math.floor(data.main.temp);
-      description.innerText = data.weather[0].description;
-      
-      clouds.innerText = data.clouds.all;
-      humidity.innerText = data.main.humidity;
-      pressure.innerText = data.main.pressure;
-    }
-  };
-
-  valueSearch.value = 'Hanoi';
-  searchWeather();
-</script>
-
+        
+        const city = document.querySelector('.name figcaption');
+        const form = document.querySelector('form');
+        const temperature = document.querySelector('.temperature span');
+        const tempIcon = document.querySelector('.temperature img');
+        const description = document.querySelector('.description');
+        const valueSearch = document.getElementById('name');
+        const clouds = document.getElementById('clouds');
+        const humidity = document.getElementById('humidity');
+        const pressure = document.getElementById('pressure');
+        const countryFlag = document.querySelector('.name img');
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (valueSearch.value.trim() !== '') {
+                searchWeather(valueSearch.value);
+            }
+        });
+        
+        const searchWeather = async (cityName) => {
+            try {
+                const resp = await fetch(`${url}&q=${cityName}`);
+                const data = await resp.json();
+                
+                if (data.cod === 200) {
+                    city.innerText = data.name;
+                    countryFlag.src = `https://flagsapi.com/${data.sys.country}/shiny/32.png`;
+                    
+                    tempIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+                    temperature.innerText = Math.floor(data.main.temp);
+                    description.innerText = data.weather[0].description;
+                    
+                    clouds.innerText = data.clouds.all;
+                    humidity.innerText = data.main.humidity;
+                    pressure.innerText = data.main.pressure;
+                } else {
+                    alert('Không tìm thấy thành phố. Vui lòng thử lại!');
+                }
+            } catch (error) {
+                console.error('Lỗi lấy dữ liệu:', error);
+                alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+            }
+        };
+        
+        // Mặc định hiển thị Hà Nội
+        searchWeather('Hanoi');
+    </script>
     
     
 	
@@ -511,10 +524,7 @@
                             </div>
                             <div class="post-info">
                                 <h4>Pam yêu ơi – “mầm non giải trí”...</h4>
-                                <ul>
-                                    <li>Phương Anh</li>
-                                    <li>16:25 22/03/2023</li>
-                                </ul>
+                                
                                 <p>Pamela hay còn có tên khác được đông đảo cư dân mạng gọi là Pam yêu ơi tên thật là Hải Đường, sinh năm 2022 và là con gái đầu lòng của diễn viên...</p>
                             </div>
                         </div>
@@ -525,19 +535,16 @@
 					<a href="https://vnexpress.net/nhu-cau-tuyen-dung-lap-trinh-vien-lao-doc-4857848.html" class="post-box-link">
                         <div class="post-box">
                             <div class="post-thumb">
-                                <img src="uploads/it1.png" class="img-fluid" alt="post-img" />
+                                <img src="uploads/love.png" class="img-fluid" alt="post-img" />
                                 <div class="date">
                                     <span>03</span>
-                                    <span>15</span>
+                                    <span>22</span>
                                 </div>
                             </div>
                             <div class="post-info">
-                                <h4>Nhu cầu tuyển dụng lập trình viên...</h4>
-                                <ul>
-                                    <li>Điệp Anh</li>
-                                    <li>12:57 7/3/2025</li>
-                                </ul>
-                                <p>Số lượng việc làm dành cho kỹ sư phần mềm trên Indeed ở mức thấp nhất trong 5 năm, dấu hiệu cho thấy nhu cầu đang xuống dốc...</p>
+                                <h4>Muôn vàn sắc thái của tình yêu...</h4>
+                                
+                                <p>Tình yêu (Love) là một trong những danh từ được dùng nhiều nhất và nghe nói cũng thuộc diện lâu đời nhất trong lịch sử loài người....</p>
                             </div>
                         </div>
                     </a>
@@ -554,11 +561,7 @@
                             </div>
                             <div class="post-info">
                                 <h4>Show diễn BlackPink ở Hà Nội</h4>
-                                <ul>
-                                    <li>Duy Nam</li>
-                                    <li>
-                                        10:52 30/07/2023</li>
-                                </ul>
+                               
                                 <p>Kết thúc đêm diễn Born Pink đầu tiên ở Hà Nội, khán giả đều cảm thấy thỏa mãn, phấn khích. Show diễn gặp sự cố mưa lớn lúc đầu...</p>
                             </div>
                         </div>
@@ -593,7 +596,7 @@
                                 <div class="clearfix"></div>
                                 <div class="col-lg-12 text-center">
                                     <div id="success"></div>
-                                    <button id="sendMessageButton" class="sim-btn btn-hover-new" data-text="Send Message" type="submit">
+                                    <button id="sendMessageButton" class="sim-btn btn-hover-new" data-text="Gửi tin nhắn" type="submit">
                                         Gửi tin nhắn
                                     </button>
                                 </div>
@@ -604,6 +607,18 @@
             </div>
         </div>
     </div>
+
+    <!-- <div id="trip" class="section lb">
+		<div class="container">
+			<div class="section-title text-left">
+                <h3>Hẹn Dương đi chơi</h3>
+                <p>Một số tin tức gần đây</p>
+            </div><!-- end title -->
+			
+			
+			
+		<!-- </div>
+	</div> --> 
     <script>
         document.getElementById("contactForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Ngăn chặn load lại trang khi submit
@@ -641,15 +656,16 @@
         <div class="container">
             <div class="footer-distributed">
                 <div class="footer-left">
-                    <!-- <p class="footer-links">
-                        <a href="#">Home</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Pricing</a>
-                        <a href="#">About</a>
-                        <a href="#">Faq</a>
-                        <a href="#">Contact</a>
-                    </p> -->
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2025 <a href="#">DuongBill</a> 
+                    <p class="footer-links">
+                        <a href="#">Trang chủ</a>
+                        <a href="#">Duong</a>
+                        <a href="#">Ảnh</a>
+                        <a href="#">Thời tiết</a>
+                        <a href="#">Tin tức</a>
+                        <a href="#">Liên hệ</a>
+                    </p>
+                    <p class="footer-company-name">All Rights Reserved. &copy; 2025 <a href="https://quiz.com/cbc5cd6a-b5fb-4844-adff-3af51c2bd80d/">DuongBill</a> 
+                      
 				
                 </div>
             </div>
