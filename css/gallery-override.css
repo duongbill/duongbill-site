@@ -1,0 +1,29 @@
+/* Gallery hover effect override */
+
+/* Remove the dark overlay on hover */
+.gallery-list .img-overlay {
+    background: transparent;
+}
+
+/* Keep the image enlargement effect but remove the overlay */
+.gallery-single:hover img {
+    transform: scale(1.05);
+}
+
+/* Make the hover button always visible but with reduced opacity when not hovered */
+.hoverbutton {
+    transform: scale(1);
+    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.gallery-single:hover .hoverbutton {
+    opacity: 1;
+}
+
+/* Ensure the hover button is visible on all devices */
+@media (max-width: 768px) {
+    .hoverbutton {
+        opacity: 1;
+    }
+}

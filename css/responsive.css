@@ -2,7 +2,30 @@
     Version: 1.0
 /****************************************** */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	/* Project Cards Responsive for Large Screens */
+	.project-card {
+		height: 100%;
+	}
+
+	.project-img {
+		height: 220px;
+	}
+
+	.project-info p {
+		min-height: 70px;
+	}
+
+	/* Timeline Responsive for Large Screens */
+	.timeline-content {
+		padding: 20px;
+	}
+
+	/* Ensure consistent spacing */
+	.section {
+		padding: 80px 0;
+	}
+}
 @media (min-width: 768px) and (max-width: 991px) {
 	#mainNav {
 		background-color: #333333;
@@ -44,11 +67,107 @@
 	.filter-button-group{
 		text-align: center !important;
 	}
+	/* Enhanced News Cards Responsive */
 	.post-box{
 		margin-bottom: 30px;
 	}
+
+	.post-thumb {
+		height: 180px;
+	}
+
+	.post-info h4 {
+		height: 45px;
+		font-size: 16px;
+	}
+
+	.post-info p {
+		height: 80px;
+		font-size: 13px;
+	}
+
+	.date {
+		padding: 6px 10px;
+	}
+
+	.date .day {
+		font-size: 16px;
+	}
+
+	.date .month {
+		font-size: 11px;
+	}
 	.footer-distributed .footer-left{
 		text-align: center;
+	}
+
+	/* Project Cards Responsive for Tablets */
+	.project-card {
+		margin-bottom: 30px;
+		height: 100%;
+	}
+
+	.project-img {
+		height: 200px;
+	}
+
+	.project-info p {
+		min-height: 80px;
+	}
+
+	/* Timeline Responsive for Tablets */
+	.timeline-container {
+		padding: 10px 30px;
+		margin-bottom: 15px;
+	}
+
+	.timeline-container::after {
+		width: 16px;
+		height: 16px;
+		top: 18px;
+		border: 3px solid #59ECFF;
+	}
+
+	.timeline-container::before {
+		top: 18px;
+		border-width: 8px 0 8px 8px;
+	}
+
+	.timeline-right::before {
+		border-width: 8px 8px 8px 0;
+	}
+
+	.timeline-content {
+		padding: 15px;
+	}
+
+	.timeline-content h4 {
+		font-size: 16px;
+		margin-bottom: 6px;
+	}
+
+	.timeline-content p {
+		font-size: 14px;
+		margin-bottom: 3px;
+	}
+
+	/* Skills Bar Responsive for Tablets */
+	.skill-item {
+		margin-bottom: 20px;
+	}
+
+	/* Contact Section Responsive for Tablets */
+	.contact-info {
+		margin-bottom: 30px;
+	}
+
+	/* Footer Responsive for Tablets */
+	.footer-links ul {
+		padding-left: 0;
+	}
+
+	.newsletter-form input {
+		margin-bottom: 15px;
 	}
 }
 @media (max-width: 767px) {
@@ -107,6 +226,147 @@
         width: 100% !important;
     }
 
+    /* Project Cards Responsive */
+    .project-card {
+        margin-bottom: 60px;
+        margin-top: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(89, 236, 255, 0.2);
+        border-radius: 10px;
+    }
+
+    .col-md-4 {
+        padding-left: 25px;
+        padding-right: 25px;
+        margin-bottom: 30px;
+    }
+
+    .project-img {
+        height: 180px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom: 2px solid rgba(89, 236, 255, 0.3);
+    }
+
+    /* Add clear separation between projects */
+    .col-md-4:after {
+        content: '';
+        display: block;
+        height: 20px;
+        width: 100%;
+        clear: both;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:active {
+        transform: translateY(0);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-info h4 {
+        font-size: 18px;
+    }
+
+    .project-info {
+        padding: 20px 15px;
+    }
+
+    .project-info p {
+        font-size: 14px;
+        min-height: auto;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .project-tags {
+        margin-bottom: 20px;
+    }
+
+    .project-tag {
+        font-size: 11px;
+        padding: 5px 10px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        border-radius: 20px;
+    }
+
+    .project-links {
+        margin-top: 15px;
+    }
+
+    .project-link {
+        margin-right: 15px;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Timeline Responsive */
+    /* .timeline::after {
+        display: none; /* Hide the vertical line */
+
+
+    .timeline-container {
+        width: 100%;
+        padding-left: 20px; /* Reduced padding since we removed the dots */
+        padding-right: 15px;
+        margin-bottom: 12px;
+    }
+
+    /* Hide arrows on mobile */
+    .timeline-container.timeline-left::before,
+    .timeline-container.timeline-right::before {
+        display: none; /* Hide the arrows */
+    }
+
+    /* Position all containers to the left on mobile */
+    .timeline-left,
+    .timeline-right {
+        left: 0;
+    }
+
+    /* Hide dots on mobile */
+    .timeline-container.timeline-left::after,
+    .timeline-container.timeline-right::after {
+        display: none; /* Hide the dots completely */
+    }
+
+    .timeline-content {
+        padding: 10px;
+    }
+
+    .timeline-content h4 {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    .timeline-content p {
+        font-size: 12px;
+        margin-bottom: 2px;
+        line-height: 1.3;
+    }
+
+    .timeline-content small {
+        font-size: 10px;
+    }
+
+    /* Skills Bar Responsive */
+    .skill-item h5 {
+        font-size: 14px;
+    }
+
+    .skill-bar {
+        height: 6px;
+    }
+
+    .skill-progress:before {
+        font-size: 12px;
+        top: -20px;
+    }
+
 
 	#mainNav {
 		background-color: #333333;
@@ -139,7 +399,7 @@
 		margin: 0 auto;      /* Căn giữa phần tử theo chiều ngang */
 		display: block;      /* Đảm bảo phần tử hoạt động đúng */
 	}
-	
+
 	.cd-headline.clip span{
 		font-size: 20px;
 	}
@@ -161,8 +421,52 @@
 	.filter-button-group{
 		text-align: center !important;
 	}
+	/* Enhanced News Cards Responsive for Mobile */
 	.post-box{
 		margin-bottom: 30px;
+		border-radius: 8px;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	}
+
+	.post-thumb {
+		height: 160px;
+	}
+
+	.post-info {
+		padding: 15px;
+	}
+
+	.post-info h4 {
+		height: 42px;
+		font-size: 15px;
+		margin-bottom: 8px;
+	}
+
+	.post-info p {
+		height: 75px;
+		font-size: 12px;
+		line-height: 1.5;
+	}
+
+	.date {
+		padding: 5px 8px;
+		top: 10px;
+		left: 10px;
+	}
+
+	.date .day {
+		font-size: 15px;
+	}
+
+	.date .month {
+		font-size: 10px;
+	}
+
+	.post-category {
+		padding: 4px 8px;
+		font-size: 10px;
+		bottom: 10px;
+		right: 10px;
 	}
 	.footer-distributed .footer-left{
 		text-align: center;
@@ -185,7 +489,7 @@
 		background-color: #ffffff;
 		padding: 70px 0 0 0;
 	}
-	
+
 	.weather-widget {
 		width: 350px;
 		height: max-content;
@@ -196,9 +500,9 @@
 		box-sizing: border-box;
 		font-family: sans-serif;
 		margin:auto;
-		
+
 		margin-bottom: 70px;
-	 
+
 	  }
 	  .weather-widget form {
 		border: 1px solid #ddd;
@@ -262,14 +566,194 @@
 		background-color: #48567b;
 	  }
 
-	  button#sendMessageButton {
-		background: rgb(255, 255, 255);
+	  /* iOS Contact Form Responsive */
+	  .ios-contact-form {
+		padding: 20px;
+		border-radius: 14px;
+		margin-bottom: 30px;
+	  }
+
+	  .ios-form-control {
+		min-height: 120px;
+		padding: 12px;
+		font-size: 14px;
+		border-radius: 10px;
+	  }
+
+	  .ios-button {
+		padding: 12px 24px;
+		font-size: 14px;
+		border-radius: 10px;
+		width: 100%;
+		max-width: 250px;
+	  }
+
+	  /* Make contact sections display separately on mobile */
+	  .contact-info, .ios-contact-form {
+		padding: 20px;
+		border-radius: 14px;
+		margin-bottom: 30px;
+		width: 100%;
+		float: none;
+		clear: both;
+	  }
+
+	  /* Enhanced separation for contact sections on mobile */
+	  .contact-container {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	  }
+
+	  .contact-info-col, .contact-form-col {
+		width: 100%;
+		padding: 0;
+	  }
+
+	  /* Add visual separation with different background tints */
+	  .contact-info {
+		background-color: rgba(45, 55, 72, 0.75);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+	  }
+
+	  .ios-contact-form {
+		background-color: rgba(52, 73, 94, 0.75);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+	  }
+
+	  .contact-info h4, .ios-contact-form h4 {
+		font-size: 18px;
+		margin-bottom: 20px;
+		padding-bottom: 10px;
+	  }
+
+	  .contact-info h4:after, .ios-contact-form h4:after {
+		width: 50px;
+		height: 2px;
+	  }
+
+	  .contact-details li {
+		font-size: 15px;
+		padding: 8px 12px;
+		margin-bottom: 15px;
+	  }
+
+	  .contact-details li i {
+		width: 36px;
+		height: 36px;
+		font-size: 16px;
+	  }
+
+	.contact-details li {
+		font-size: 14px;
+		margin-bottom: 10px;
 	}
-	button#sendMessageButton:hover {
-		background: rgb(5, 5, 5);
-	
+
+	.contact-details li i {
+		width: 30px;
+		height: 30px;
+		margin-right: 10px;
+		font-size: 14px;
 	}
 
+	/* Footer Responsive */
+	.footer-distributed {
+		padding: 30px 10px;
+	}
 
+	.footer-info h3 {
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
 
+	.footer-links h4 {
+		font-size: 16px;
+		margin-bottom: 15px;
+	}
+
+	.footer-links ul li {
+		margin-bottom: 8px;
+	}
+
+	.newsletter-form h4 {
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+
+	.newsletter-form p {
+		font-size: 14px;
+		margin-bottom: 15px;
+	}
+
+	.newsletter-form input {
+		padding: 8px 12px;
+		margin-bottom: 10px;
+	}
+
+	/* Simple Footer Responsive */
+	.simple-footer {
+		padding: 30px 0;
+	}
+
+	.footer-logo h3 {
+		font-size: 24px;
+		margin-bottom: 15px;
+	}
+
+	.footer-social {
+		margin: 15px 0;
+	}
+
+	.footer-social .social-icon {
+		width: 36px;
+		height: 36px;
+		font-size: 16px;
+		margin: 0 8px;
+	}
+
+	.footer-nav {
+		margin: 15px 0;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.footer-nav a {
+		margin: 5px 10px;
+		font-size: 14px;
+	}
+
+	.footer-copyright {
+		margin-top: 15px;
+		font-size: 12px;
+	}
+
+	/* Fix spacing issues */
+	.section {
+		padding: 40px 0;
+	}
+
+	#projects.section {
+		padding: 60px 0;
+	}
+
+	#projects .container {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	#projects .row {
+		margin-bottom: 30px;
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+
+	.section-title {
+		margin-bottom: 30px;
+	}
+
+	/* AOS animations on mobile */
+	[data-aos] {
+		opacity: 1 !important;
+		transform: translate(0) scale(1) !important;
+	}
 }

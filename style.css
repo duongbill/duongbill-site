@@ -1528,18 +1528,40 @@ hr.invis1 {
 	border-radius: 0px;
 }
 
+/* Enhanced Gallery Styling */
+.gallery-list {
+    margin-top: 30px;
+    min-height: 300px; /* Ensure there's space for content */
+}
 
-
-
-.gallery-single{
-	margin: 30px 15px;;
+.gallery-grid {
+    padding: 10px;
+    transition: all 0.4s ease;
 }
 
 .gallery-single {
-	position: relative;
-	overflow: hidden;
-	-webkit-box-shadow: 0 0 10px #ccc;
-	box-shadow: 0 0 10px #ccc;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    transform: translateY(0);
+}
+
+.gallery-single:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-single img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.gallery-single:hover img {
+    transform: scale(1.05);
 }
 
 .gallery-list .img-overlay {
@@ -1548,95 +1570,191 @@ hr.invis1 {
     left: 10px;
     right: 10px;
     bottom: 10px;
-    background: rgba(51, 51, 51, 0.80);
-    color: #35424C;
+    background: rgba(51, 51, 51, 0.75);
     opacity: 0;
-    -webkit-transition: all .5s;
-    transition: all .5s;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-single:hover .img-overlay {
+    opacity: 1;
+}
+
+.hoverbutton {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    transform: scale(0);
+}
+
+.gallery-single:hover .hoverbutton {
+    transform: scale(1);
+}
+
+.hoverbutton:hover {
+    background: #fff;
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+.filter-button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.filter-button-group button {
+    margin: 5px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filter-button-group button.active,
+.filter-button-group button:hover {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Category labels */
+.category-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
     z-index: 2;
-    -webkit-transform: translateY(10px);
-    transform: translateY(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.gallery-list .gallery-single:hover .img-overlay {
-    opacity: 0.4;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
+/* Animation for filtered items */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.gallery-list .gallery-single:hover .img-overlay .hoverbutton{
-	opacity: 1;
-	top: 50%;
+.gallery-grid.animated {
+    animation: fadeInScale 0.5s ease forwards;
 }
 
-
-.post-box .date{
-	display: inline-block;
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	background: #333333;
-	color: #fff;
-	padding: 10px 15px;
-	text-align: center;
+/* Debug styles */
+.isotope-debug {
+    background: #f8f9fa;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
 }
 
-.post-thumb{
-	position: relative;
+/* Lightbox customization */
+.lb-outerContainer {
+    border-radius: 8px;
 }
 
-.post-box{
-	-webkit-box-shadow: 0px 5px 35px 0px rgba(148, 146, 245, 0.15);
-	box-shadow: 0px 5px 35px 0px rgba(148, 146, 245, 0.15);
-	background: #ffffff;
+.lb-dataContainer {
+    border-radius: 0 0 8px 8px;
 }
 
-.post-box:hover .post-thumb::before{
-	opacity: .6;
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
+.lb-data .lb-caption {
+    font-size: 16px;
+    font-weight: 600;
 }
 
-
-.post-box .post-thumb::before{
-	content: "";
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: rgba(51, 51, 51, 0.80);
-	opacity: 0;
-	-webkit-transition: all .5s;
-	transition: all .5s;
-	-webkit-transform: translateY(10px);
-	transform: translateY(10px);
+.lb-data .lb-number {
+    font-size: 14px;
+    padding-top: 10px;
 }
 
-.post-info{
-	padding: 0px 15px 40px 15px;
-	background: #ffffff;
-	text-align: left;
-	margin-top: 40px;
+/* Gallery loading state */
+.gallery-loading {
+    padding: 50px 0;
 }
 
-.post-info p{
-	margin: 0px;
+.gallery-loading .spinner-border {
+    width: 3rem;
+    height: 3rem;
 }
 
-.post-info h4{
-	font-size: 20px;
-	font-weight: 700;
+/* Category label styling */
+.category-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.post-info ul{
-	display: block;
-	text-align: center;
-	margin-bottom: 15px;
+/* Error state */
+.gallery-error {
+    padding: 30px;
+    background: #fff5f5;
+    border-radius: 8px;
+    text-align: center;
+    margin: 20px 0;
 }
-.post-info ul li{
-	display: inline-block;
-	text-align: center;
+
+.gallery-error h4 {
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+.gallery-error p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.gallery-error button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.gallery-error button:hover {
+    background: #c0392b;
 }
 
 
@@ -2663,6 +2781,10 @@ select.mobile-device {
   /* #trip{
     background-color: #8d8d8d;
   } */
+
+
+
+
 
 
 

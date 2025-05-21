@@ -3,13 +3,13 @@
 
     <!-- Basic -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
- 
+
      <!-- Site Metas -->
-    <title>DuongBill</title>  
+    <title>DuongBill</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -27,10 +27,903 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/gallery-override.css">
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        /* Contact Info Styles */
+        .contact-info {
+            background-color: rgba(45, 55, 72, 0.7);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            background-color: rgba(45, 55, 72, 0.8);
+        }
+
+        .contact-info h4 {
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 12px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .contact-info h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #3498db;
+        }
+
+        .contact-details {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .contact-details li {
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-details li:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+            transform: translateX(5px);
+        }
+
+        /* iOS-style Contact Form */
+        .ios-contact-form {
+            background-color: rgba(52, 73, 94, 0.7);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ios-contact-form:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            background-color: rgba(52, 73, 94, 0.8);
+        }
+
+        .ios-contact-form h4 {
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 12px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .ios-contact-form h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #3498db;
+        }
+
+        .ios-form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .ios-form-control {
+            width: 100%;
+            min-height: 150px;
+            padding: 18px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            resize: none;
+            margin-top: 10px;
+        }
+
+        .ios-form-control:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1), inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .ios-form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+        }
+
+        .ios-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .ios-button span {
+            margin-right: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ios-button i {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ios-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+            background-color: #2980b9;
+        }
+
+        .ios-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .ios-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+            z-index: 1;
+        }
+
+        .ios-button:hover::before {
+            left: 100%;
+        }
+
+        /* iOS-style Alert Messages */
+        .ios-alert {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            animation: slideDown 0.3s ease forwards;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .ios-alert i {
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        .ios-alert p {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .ios-alert-success {
+            background-color: rgba(52, 199, 89, 0.15);
+            border: 1px solid rgba(52, 199, 89, 0.3);
+        }
+
+        .ios-alert-success i {
+            color: #34c759;
+        }
+
+        .ios-alert-error {
+            background-color: rgba(255, 59, 48, 0.15);
+            border: 1px solid rgba(255, 59, 48, 0.3);
+        }
+
+        .ios-alert-error i {
+            color: #ff3b30;
+        }
+
+        /* Contact Container Styles for Responsive Layout */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .contact-info-col, .contact-form-col {
+            flex: 1 1 100%;
+            min-width: 300px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-info-col, .contact-form-col {
+                flex: 1 1 45%;
+            }
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Simple Footer Styles */
+        .simple-footer {
+            background-color: #222;
+            padding: 40px 0;
+            color: #fff;
+            border-top: 1px solid rgba(89, 236, 255, 0.3);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-logo h3 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-logo h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background-color: #59ECFF;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .footer-social .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            color: #fff;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social .social-icon:hover {
+            background-color: #59ECFF;
+            color: #222;
+            transform: translateY(-5px);
+        }
+
+        .footer-nav {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-nav a {
+            color: #ccc;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 3px;
+        }
+
+        .footer-nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #59ECFF;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #59ECFF;
+            text-decoration: none;
+        }
+
+        .footer-nav a:hover:after {
+            width: 100%;
+        }
+
+        .footer-copyright {
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .contact-details li i {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            text-align: center;
+            color: #fff;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-details li:hover i {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            background-color: #2980b9;
+        }
+
+        .contact-details li a {
+            color: #ffffff;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .contact-details li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .contact-details li a:hover {
+            color: #3498db;
+        }
+
+        .contact-details li a:hover:after {
+            width: 100%;
+        }
+
+        /* Enhanced Button Styles */
+        .sim-btn {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sim-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .sim-btn:hover:before {
+            left: 100%;
+        }
+
+        /* Enhanced News Card Styles */
+        .post-box {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .post-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-thumb {
+            position: relative;
+            overflow: hidden;
+            height: 200px; /* Fixed height for all news images */
+        }
+
+        .post-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            transition: transform 0.5s ease;
+        }
+
+        .post-box:hover .post-thumb img {
+            transform: scale(1.05);
+        }
+
+        .post-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+        }
+
+        .post-info h4 {
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.4;
+            height: 50px; /* Fixed height for titles */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .post-info p {
+            color: #666;
+            margin-bottom: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            height: 90px; /* Fixed height for descriptions */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        .date {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(89, 236, 255, 0.9);
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .date .day {
+            font-size: 18px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .date .month {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .post-category {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .post-box-link {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .post-box-link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Social Icons Enhanced */
+        .social-icon {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #222;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #59ECFF;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00c2e0;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #59ECFF;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            margin-bottom: 15px;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background-color: #222;
+            border: 3px solid #59ECFF;
+            top: 18px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-left {
+            left: 0;
+        }
+
+        .timeline-right {
+            left: 50%;
+        }
+
+        .timeline-left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 18px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #333;
+            border-width: 8px 0 8px 8px;
+            border-color: transparent transparent transparent #333;
+        }
+
+        .timeline-right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 18px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #333;
+            border-width: 8px 8px 8px 0;
+            border-color: transparent #333 transparent transparent;
+        }
+
+        .timeline-right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: #333;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: #3a3a3a;
+        }
+
+        .timeline-content h4 {
+            color: #59ECFF;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .timeline-content p {
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .timeline-content small {
+            color: #aaa;
+            font-style: italic;
+            font-size: 12px;
+        }
+
+        /* Skills Bar */
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #333;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: #59ECFF;
+            border-radius: 10px;
+            position: relative;
+            transition: width 1.5s ease-in-out;
+        }
+
+        .skill-progress:before {
+            content: attr(data-progress) '%';
+            position: absolute;
+            right: 0;
+            top: -25px;
+            color: #fff;
+        }
+
+        /* Newsletter Form */
+        .newsletter-form {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 3px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: #59ECFF;
+        }
+
+        /* Loading Animation Enhancement */
+        #loading-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+        }
+
+        #loading-screen img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(89, 236, 255, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 15px rgba(89, 236, 255, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(89, 236, 255, 0);
+            }
+        }
+
+        /* Project Card Styles */
+        .project-card {
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img {
+            position: relative;
+            overflow: hidden;
+            height: 200px; /* Fixed height for all project images */
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-info h4 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .project-info p {
+            color: #ccc;
+            margin-bottom: 15px;
+            min-height: 60px; /* Ensures all descriptions have the same minimum height */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            margin-top: auto;
+        }
+
+        .project-tag {
+            background-color: rgba(89, 236, 255, 0.1);
+            color: #59ECFF;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .project-links {
+            display: flex;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background-color: #59ECFF;
+            color: #333;
+        }
+    </style>
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -43,18 +936,17 @@
 <body id="page-top" class="politics_version">
     <div id="loading-screen">
         <img src="uploads/embill.jpg" alt="Loading...">
-        
-        <p >Loading...</p>
+        <p>Loading...</p>
     </div>
-    
+
     <!-- LOADER -->
     <div id="preloader">
         <div id="main-ld">
-			<div id="loader"></div>  
+			<div id="loader"></div>
 		</div>
     </div><!-- end loader -->
     <!-- END LOADER -->
-	
+
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
@@ -62,51 +954,48 @@
                 <img class="img-fluid" src="images/dbilllogo.png" alt="" />
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            
+
             <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger active" href="#home">Trang chủ</a>
+                <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#about">Duong</a>
-                </li>
-                <!-- <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-                </li> -->
-                <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#portfolio">Ảnh</a>
+                <a class="nav-link js-scroll-trigger" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#testimonials">Thời tiết</a>
+                <a class="nav-link js-scroll-trigger" href="#portfolio">Gallery</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#blog">Tin tức</a>
+                <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#contact">Liên hệ</a>
+                <a class="nav-link js-scroll-trigger" href="#testimonials">Weather</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#trip">Đi chơi</a>
-                </li> -->
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#blog">News</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                </li>
             </ul>
             </div>
         </div>
         </nav>
-	
+
 	<section id="home" class="main-banner parallaxie" style="background: url('uploads/bgchinh.png')">
 		<div class="heading">
-			<h1>Xin chào, tôi là Dương</h1>
-            <p>"Đây là nơi tôi chia sẻ những thông tin cơ bản về bản thân và cuộc sống của tôi."</p>
+			<h1>Hello, I'm Duong</h1>
+            <p>"This is where I share basic information about myself and my life."</p>
 <h3 class="cd-headline clip is-full-width">
 
-				<span>Nguyễn Hải Dương, aka </span>
+				<span>Nguyen Hai Duong, aka </span>
 				<span class="cd-words-wrapper">
 					<b class="is-visible">DuongBill</b>
 					<b>Traitimtanvo</b>
-					
+
 				</span>
 			</h3>
 		</div>
@@ -141,107 +1030,265 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="message-box">                        
-                        <h2>Duong</h2>
-<p>Xin chào mọi người, tôi là Dương, 21 tuổi. Tôi là sinh viên năm ba chuyên ngành Công nghệ Thông tin.</p>
-<p>Trang web này là nơi tôi chia sẻ các dự án cá nhân, bài viết về công nghệ và những sở thích của mình.Hãy thoải mái khám phá và kết nối với tôi nhé! Chúc bạn một ngày tốt lành!</p>
+                    <div class="message-box" data-aos="fade-right" data-aos-duration="1000">
+                        <h2>About Me</h2>
+                        <p>Hello everyone, I'm Duong, 21 years old. I'm a third-year student majoring in Information Technology.</p>
+                        <p>This website is where I share my personal projects, technology articles, and my interests. Feel free to explore and connect with me! Have a great day!</p>
 
-                        <a href="./uploads/pdf/nguyenhaiduongENG.pdf" class="sim-btn btn-hover-new" data-text="Download CV(ENG)" download="nguyenhaiduongEND.pdf">
-                            <span>Download CV (ENG)</span>
-                        </a>
-                        
-                        
-                        <a href="./uploads/pdf/nguyenhaiduongVIE.pdf" class="sim-btn btn-hover-new" data-text="Download CV(VIE)" download="nguyenhaiduongEND.pdf">
-                            <span>Download CV (VIE)</span>
-                        </a>
- 
-         
-        <div class="social-buttons">
-            <a href="https://www.facebook.com/duonggbill" target="_blank" class="social-icon facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/duonggbill/" target="_blank" class="social-icon instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.youtube.com/@__traitimtanvo" target="_blank" class="social-icon youtube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://zalo.me/0985082004" target="_blank" class="social-icon zalo">
-                <img src="./uploads/logo-zalo-vector-16.jpg" alt="Zalo">
-            </a>
-            <a href="uploads/qr1.jpg" data-lightbox="qr-code" class="social-icon qr">
-                <i class="fas fa-qrcode"></i>
-            </a>
-            <a href="https://locket.camera/links/bb8E5M2wyG6Yw15Y6" target="_blank" class="social-icon locket">
-                <img src="./uploads/lkheart.png" alt="Locket">
-            </a>
-          
-            
-            
-            
-        </div>
-                        
+                        <div class="buttons-container">
+                            <a href="./uploads/pdf/CV_NguyenHaiDuong_ENG.pdf" class="sim-btn btn-hover-new" data-text="Download CV(ENG)" download="CV_NguyenHaiDuong_ENG">
+                                <span>Download CV (ENG)</span>
+                            </a>
+                            <a href="./uploads/pdf/CV_NguyenHaiDuong_VIE.pdf" class="sim-btn btn-hover-new" data-text="Download CV(VIE)" download="CV_NguyenHaiDuong_VIE">
+                                <span>Download CV (VIE)</span>
+                            </a>
+                        </div>
+
+                        <div class="social-buttons">
+                            <a href="https://www.facebook.com/duonggbill" target="_blank" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/duonggbill/" target="_blank" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@__traitimtanvo" target="_blank" class="social-icon youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://zalo.me/0985082004" target="_blank" class="social-icon zalo">
+                                <img src="./uploads/logo-zalo-vector-16.jpg" alt="Zalo">
+                            </a>
+                            <a href="uploads/qr1.jpg" data-lightbox="qr-code" class="social-icon qr">
+                                <i class="fas fa-qrcode"></i>
+                            </a>
+                            <a href="https://locket.camera/links/bb8E5M2wyG6Yw15Y6" target="_blank" class="social-icon locket">
+                                <img src="./uploads/lkheart.png" alt="Locket">
+                            </a>
+                        </div>
                     </div><!-- end messagebox -->
                 </div><!-- end col -->
 
                 <div class="col-md-6">
-                    <div class="right-box-pro wow fadeIn">
+                    <div class="right-box-pro wow fadeIn" data-aos="fade-left" data-aos-duration="1000">
                         <img src="uploads/image 106.png" alt="" class="img-fluid img-rounded">
                     </div><!-- end media -->
                 </div><!-- end col -->
             </div><!-- end row -->
+
+            <div class="row mt-5">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="mb-4">My Skills</h3>
+                    <div class="skill-item">
+                        <h5>Web Development</h5>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="80" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <h5>UI/UX Design</h5>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="88" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <h5>Mobile Development</h5>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="60" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <h5>Database Management</h5>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="80" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <h5>English</h5>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="55" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="mb-4">Education & Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-container timeline-right">
+                            <div class="timeline-content">
+                                <h4>2022 - Present</h4>
+                                <p>Electric Power University</p>
+
+                            </div>
+                        </div>
+                        <div class="timeline-container timeline-left">
+                            <div class="timeline-content">
+                                <h4>2019 - 2022</h4>
+                                <p>Lao Cai City High School No. 1</p>
+
+                            </div>
+                        </div>
+                        <div class="timeline-container timeline-right">
+                            <div class="timeline-content">
+                                <h4>2015 - 2019</h4>
+                                <p>Bac Cuong Secondary School</p>
+
+                            </div>
+                        </div>
+                        <div class="timeline-container timeline-left">
+                            <div class="timeline-content">
+                                <h4>2010 - 2015</h4>
+                                <p>Le Van Tam Primary School</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div><!-- end container -->
     </div><!-- end section -->
 
-	<div id="portfolio" class="section lb">
+    <!-- Projects Section -->
+    <div id="projects" class="section lb">
+        <div class="container">
+            <div class="section-title text-left" data-aos="fade-up">
+                <h3>My Projects</h3>
+                <p>Here are some of my recent projects and works</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="uploads/sm.jpg" class="img-fluid" alt="Project 1" />
+                        </div>
+                        <div class="project-info">
+                            <h4>Smovie</h4>
+                            <p>A comprehensive online movie streaming platform with user reviews, and advanced search functionality.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">ReactJS</span>
+                                <span class="project-tag">Django</span>
+                                <span class="project-tag">REST API</span>
+                                <span class="project-tag">PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/eja-edo/movie_web" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="https://smovie.fun/" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="uploads/sb.jpg" class="img-fluid" alt="Project 2" />
+                        </div>
+                        <div class="project-info">
+                            <h4>Sbook</h4>
+                            <p>An innovative e-book reader application with customizable reading experience, bookmarking features, and a vast library of digital content.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">ReactNative</span>
+                                  <span class="project-tag">NodeJS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/duongbill/sbook_app" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="uploads/ai.jpg" class="img-fluid" alt="Project 3" />
+                        </div>
+                        <div class="project-info">
+                            <h4>Text Summarization</h4>
+                            <p>An advanced web-based text summarization tool leveraging natural language processing, machine learning algorithms, and interactive visualization for comprehensive content analysis.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/duongbill/text_summary" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="#" class="sim-btn btn-hover-new" data-text="View All Projects">
+                    <span>View All Projects</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div id="portfolio" class="section lb">
 		<div class="container">
 			<div class="section-title text-left">
-                <h3>Hình ảnh</h3>
-                <p>Mỗi bức ảnh kể một câu chuyện, một chương trong hành trình đầy ý nghĩa của những trải nghiệm cá nhân của tôi.</p>
+                <h3>Gallery</h3>
+                <p>Each photo tells a story, a chapter in the meaningful journey of my personal experiences.</p>
             </div><!-- end title -->
-			
+
 			<div class="gallery-menu row">
 				<div class="col-md-12">
 					<div class="button-group filter-button-group text-left">
-                       
-						<button  class="active" data-filter=".gal_a">Hồi bé</button>
+
+						<button class="active" data-filter=".gal_a">Hồi bé</button>
 						<button data-filter=".gal_b">Gia đình</button>
-						<button data-filter=".gal_c">bạn bè</button>
+						<button data-filter=".gal_c">Bạn bè</button>
                         <button data-filter=".gal_d">Dbill</button>
-                        <button  data-filter="*">Tất cả</button>
-                      
+                        <button data-filter="*">Tất cả</button>
+
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="gallery-list row">
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a">
 					<div class="gallery-single fix">
 						<img src="uploads/child1.JPG" class="img-fluid" alt="Image">
 						<div class="img-overlay">
-							<a href="uploads/child1.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+							<a href="uploads/child1.JPG" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-search-plus"></i></a>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a">
 					<div class="gallery-single fix">
 						<img src="uploads/child2.png" class="img-fluid" alt="Image">
 						<div class="img-overlay">
-							<a href="uploads/child2.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+							<a href="uploads/child2.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-search-plus"></i></a>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a ">
 					<div class="gallery-single fix">
 						<img src="uploads/child3.JPG" class="img-fluid" alt="Image">
 						<div class="img-overlay">
-							<a href="uploads/child3.JPG" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+							<a href="uploads/child3.JPG" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-search-plus"></i></a>
 						</div>
 					</div>
 				</div>
-				
+
+                <div class="col-md-4 col-sm-6 gallery-grid gal_a ">
+					<div class="gallery-single fix">
+						<img src="uploads/new/1.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/1.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-search-plus"></i></a>
+						</div>
+					</div>
+				</div>
+
+
 				<div class="col-md-4 col-sm-6 gallery-grid gal_b ">
 					<div class="gallery-single fix">
 						<img src="uploads/fam1.png" class="img-fluid" alt="Image">
@@ -250,7 +1297,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-md-4 col-sm-6 gallery-grid gal_b ">
 					<div class="gallery-single fix">
 						<img src="uploads/fam2.jpg" class="img-fluid" alt="Image">
@@ -259,12 +1306,28 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-md-4 col-sm-6 gallery-grid gal_b ">
 					<div class="gallery-single fix">
 						<img src="uploads/f4.jpg" class="img-fluid" alt="Image">
 						<div class="img-overlay">
 							<a href="uploads/f4.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-4 col-sm-6 gallery-grid gal_b ">
+					<div class="gallery-single fix">
+						<img src="uploads/new/10.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/10.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-search-plus"></i></a>
+						</div>
+					</div>
+				</div>
+                  <div class="col-md-4 col-sm-6 gallery-grid gal_b ">
+					<div class="gallery-single fix">
+						<img src="uploads/new/3.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/3.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-search-plus"></i></a>
 						</div>
 					</div>
 				</div>
@@ -292,6 +1355,23 @@
 						</div>
 					</div>
 				</div>
+                  <div class="col-md-4 col-sm-6 gallery-grid gal_c ">
+					<div class="gallery-single fix">
+						<img src="uploads/new/2.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/2.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-search-plus"></i></a>
+						</div>
+					</div>
+				</div>
+                  <div class="col-md-4 col-sm-6 gallery-grid gal_c ">
+					<div class="gallery-single fix">
+						<img src="uploads/new/4.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/4.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-search-plus"></i></a>
+						</div>
+					</div>
+				</div>
+
                 <div class="col-md-4 col-sm-6 gallery-grid gal_d">
 					<div class="gallery-single fix">
 						<img src="uploads/m1.jpg" class="img-fluid" alt="Image">
@@ -316,7 +1396,63 @@
 						</div>
 					</div>
 				</div>
+                 <div class="col-md-4 col-sm-6 gallery-grid gal_d">
+					<div class="gallery-single fix">
+						<img src="uploads/new/7.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/7.jpgg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-4 col-sm-6 gallery-grid gal_d">
+					<div class="gallery-single fix">
+						<img src="uploads/new/5.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/5.jpgg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-4 col-sm-6 gallery-grid gal_d">
+					<div class="gallery-single fix">
+						<img src="uploads/new/6.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/6.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-4 col-sm-6 gallery-grid gal_d">
+					<div class="gallery-single fix">
+						<img src="uploads/new/8.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/8.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+						</div>
+					</div>
+				</div>
 
+            <div class="col-md-4 col-sm-6 gallery-grid gal_d">
+					<div class="gallery-single fix">
+						<img src="uploads/new/9.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/9.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-4 col-sm-6 gallery-grid gal_d">
+					<div class="gallery-single fix">
+						<img src="uploads/new/13.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/13.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-4 col-sm-6 gallery-grid gal_d">
+					<div class="gallery-single fix">
+						<img src="uploads/new/14.jpg" class="img-fluid" alt="Image">
+						<div class="img-overlay">
+							<a href="uploads/new/14.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+						</div>
+					</div>
+				</div>
 
                 <div class="col-md-4 col-sm-6 gallery-grid gal_b">
 					<div class="gallery-single fix">
@@ -342,7 +1478,7 @@
 						</div>
 					</div>
 				</div>
-                
+
                 <div class="col-md-4 col-sm-6 gallery-grid gal_b">
 					<div class="gallery-single fix">
 						<img src="uploads/anh/5.png" class="img-fluid" alt="Image">
@@ -396,22 +1532,20 @@
 		</div>
 	</div>
 
-
-	
     <div id="testimonials" class="section wb">
         <div class="container">
           <div class="section-title text-left">
-            <h3>Thông tin thời tiết</h3>
-            <p>Thông tin thời tiết hiện tại của các thành phố, đất nước trên thế giới.</p>
+            <h3>Weather Information</h3>
+            <p>Current weather information for cities and countries around the world.</p>
           </div>
         </div>
     </div>
 
-    
-    
+
+
     <main class="weather-widget">
         <form>
-          <input type="text" id="name" autocomplete="off" placeholder="Nhập tên thành phố...">
+          <input type="text" id="name" autocomplete="off" placeholder="Enter city name...">
           <button>
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -421,7 +1555,7 @@
             <figcaption>Hanoi</figcaption>
             <img src="https://flagsapi.com/VN/shiny/32.png">
           </figure>
-      
+
           <figure class="temperature">
             <img src="https://openweathermap.org/img/wn/10d@4x.png">
             <figcaption>
@@ -429,31 +1563,31 @@
               <sup>o</sup>C
             </figcaption>
           </figure>
-          <p class="description">Mây nhiều</p>
+          <p class="description">Cloudy</p>
           <ul>
             <li>
-              <span>Mây</span>
+              <span>Clouds</span>
               <i class="fa-solid fa-cloud"></i>
               <span id="clouds">69</span>%
             </li>
             <li>
-              <span>Độ ẩm</span>
+              <span>Humidity</span>
               <i class="fa-solid fa-droplet"></i>
               <span id="humidity">69</span>%
             </li>
             <li>
-              <span>Áp suất</span>
+              <span>Pressure</span>
               <i class="fa-solid fa-gauge"></i>
               <span id="pressure">1015</span>hPa
             </li>
           </ul>
         </section>
     </main>
-    
+
     <script>
         const appId = 'd11347d55a333d532b01a700638d7b7b';
         const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${appId}`;
-        
+
         const city = document.querySelector('.name figcaption');
         const form = document.querySelector('form');
         const temperature = document.querySelector('.temperature span');
@@ -464,27 +1598,27 @@
         const humidity = document.getElementById('humidity');
         const pressure = document.getElementById('pressure');
         const countryFlag = document.querySelector('.name img');
-        
+
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             if (valueSearch.value.trim() !== '') {
                 searchWeather(valueSearch.value);
             }
         });
-        
+
         const searchWeather = async (cityName) => {
             try {
                 const resp = await fetch(`${url}&q=${cityName}`);
                 const data = await resp.json();
-                
+
                 if (data.cod === 200) {
                     city.innerText = data.name;
                     countryFlag.src = `https://flagsapi.com/${data.sys.country}/shiny/32.png`;
-                    
+
                     tempIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
                     temperature.innerText = Math.floor(data.main.temp);
                     description.innerText = data.weather[0].description;
-                    
+
                     clouds.innerText = data.clouds.all;
                     humidity.innerText = data.main.humidity;
                     pressure.innerText = data.main.pressure;
@@ -496,107 +1630,133 @@
                 alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
             }
         };
-        
+
         // Mặc định hiển thị Hà Nội
         searchWeather('Hanoi');
     </script>
-    
-    
-	
+
+
+
+
+
 	<div id="blog" class="section lb">
 		<div class="container">
-			<div class="section-title text-left">
-                <h3>Tin tức</h3>
-                <p>Một số tin tức gần đây</p>
+			<div class="section-title text-center" data-aos="fade-up">
+                <h3>News</h3>
+                <p>Some recent news</p>
             </div><!-- end title -->
-			
+
 			<div class="row">
-				<div class="col-md-4 col-sm-6 col-lg-4">
+				<div class="col-md-4 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
 					<a href="https://nguoihanoi.vn/pam-yeu-oi-mam-non-giai-tri-gay-sot-mang-xa-hoi-68475.html" class="post-box-link">
                         <div class="post-box">
                             <div class="post-thumb">
-                                <img src="uploads/pam.png" class="img-fluid" alt="post-img" />
+                                <img src="uploads/pam.png" class="img-fluid" alt="post-img" loading="lazy" />
                                 <div class="date">
-                                    <span>03</span>
-                                    <span>15</span>
+                                    <span class="day">28</span>
+                                    <span class="month">Aug</span>
+                                </div>
+                                <div class="post-category">
+                                    <span>Entertainment</span>
                                 </div>
                             </div>
                             <div class="post-info">
-                                <h4>Pam yêu ơi – "mầm non giải trí"...</h4>
-                                
-                                <p>Pamela hay còn có tên khác được đông đảo cư dân mạng gọi là Pam yêu ơi tên thật là Hải Đường, sinh năm 2022 và là con gái đầu lòng của diễn viên...</p>
+                                <h4>Pam dear - "entertainment seedling"</h4>
+                                <p>Pamela, also known as Pam dear by many netizens, real name Hai Duong, born in 2022 and is the first daughter of actress. She has become a social media sensation with her adorable videos.</p>
                             </div>
                         </div>
                     </a>
-                    
 				</div>
-				<div class="col-md-4 col-sm-6 col-lg-4">
+
+				<div class="col-md-4 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
 					<a href="https://vnexpress.net/nhu-cau-tuyen-dung-lap-trinh-vien-lao-doc-4857848.html" class="post-box-link">
                         <div class="post-box">
                             <div class="post-thumb">
-                                <img src="uploads/love.png" class="img-fluid" alt="post-img" />
+                                <img src="uploads/love.png" class="img-fluid" alt="post-img" loading="lazy" />
                                 <div class="date">
-                                    <span>03</span>
-                                    <span>22</span>
+                                    <span class="day">15</span>
+                                    <span class="month">Jul</span>
+                                </div>
+                                <div class="post-category">
+                                    <span>Lifestyle</span>
                                 </div>
                             </div>
                             <div class="post-info">
-                                <h4>Muôn vàn sắc thái của tình yêu...</h4>
-                                
-                                <p>Tình yêu (Love) là một trong những danh từ được dùng nhiều nhất và nghe nói cũng thuộc diện lâu đời nhất trong lịch sử loài người....</p>
+                                <h4>The many facets of love</h4>
+                                <p>Love is one of the most used nouns and is said to be one of the oldest in human history. This article explores the different dimensions of love and how it shapes our lives and relationships.</p>
                             </div>
                         </div>
                     </a>
 				</div>
-				<div class="col-md-4 col-sm-6 col-lg-4">
+
+				<div class="col-md-4 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
 					<a href="https://tienphong.vn/show-dien-blackpink-o-ha-noi-van-dang-dong-tien-bat-gao-post1555935.tpo" class="post-box-link">
                         <div class="post-box">
                             <div class="post-thumb">
-                                <img src="uploads/bp1.png" class="img-fluid" alt="post-img" />
+                                <img src="uploads/bp1.png" class="img-fluid" alt="post-img" loading="lazy" />
                                 <div class="date">
-                                    <span>03</span>
-                                    <span>15</span>
+                                    <span class="day">05</span>
+                                    <span class="month">Jun</span>
+                                </div>
+                                <div class="post-category">
+                                    <span>Music</span>
                                 </div>
                             </div>
                             <div class="post-info">
-                                <h4>Show diễn BlackPink ở Hà Nội</h4>
-                               
-                                <p>Kết thúc đêm diễn Born Pink đầu tiên ở Hà Nội, khán giả đều cảm thấy thỏa mãn, phấn khích. Show diễn gặp sự cố mưa lớn lúc đầu...</p>
+                                <h4>BlackPink show in Hanoi</h4>
+                                <p>After the first Born Pink night in Hanoi, the audience felt satisfied and excited. The show encountered heavy rain at the beginning but continued with spectacular performances and effects.</p>
                             </div>
                         </div>
                     </a>
 				</div>
 			</div>
-			
+
+            <div class="text-center mt-5">
+                <a href="#" class="sim-btn btn-hover-new" data-text="View More News">
+                    <span>View More News</span>
+                </a>
+            </div>
 		</div>
 	</div>
 
     <div id="contact" class="section db">
         <div class="container">
-            <div class="section-title text-left">
-                <h3>Liên hệ</h3>
+            <div class="section-title text-center">
+                <h3>Contact Me</h3>
                 <p>
-                    Đây là tin nhắn ẩn danh bạn có muốn nói gì với tôi không.
-                     Hoặc k thích ẩn danh thì ghi tên vào.</p>
+                    Feel free to reach out through any of these channels or send me a message directly.
+                    I'd love to hear from you!</p>
             </div>
-    
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="contact_form">
+
+            <div class="row contact-container">
+                <div class="col-md-6 contact-info-col">
+                    <div class="contact-info">
+                        <h4>Contact Information</h4>
+                        <ul class="contact-details">
+                            <li><i class="fa fa-phone"></i> Phone: <a href="tel:+84985082004">0985082004</a></li>
+                            <li><i class="fa fa-envelope"></i> Gmail: <a href="mailto:billduongg@gmail.com">billduongg@gmail.com</a></li>
+                            <li><i class="fab fa-telegram"></i> Telegram: <a href="https://t.me/duonggbill" target="_blank">@duonggbill</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 contact-form-col">
+                    <div class="ios-contact-form">
                         <div id="message"></div>
+                        <h4>Anonymous Messages</h4>
                         <form id="contactForm" name="sentMessage" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="userMessage" placeholder="Nhập tin nhắn vô đây..." required="required" data-validation-required-message="Please enter a message."></textarea>
+                                    <div class="ios-form-group">
+                                        <textarea class="ios-form-control" id="userMessage" placeholder="Enter your message here..." required="required" data-validation-required-message="Please enter a message."></textarea>
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="col-lg-12 text-center">
                                     <div id="success"></div>
-                                    <button id="sendMessageButton" class="sim-btn btn-hover-new" data-text="Gửi tin nhắn" type="submit">
-                                        Gửi tin nhắn
+                                    <button id="sendMessageButton" class="ios-button" type="submit">
+                                        <span>Send Message</span>
+                                        <i class="fas fa-paper-plane"></i>
                                     </button>
                                 </div>
                             </div>
@@ -613,63 +1773,108 @@
                 <h3>Hẹn Dương đi chơi</h3>
                 <p>Một số tin tức gần đây</p>
             </div><!-- end title -->
-			
-			
-			
+
+
+
 		<!-- </div>
-	</div> --> 
+	</div> -->
     <script>
         document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Ngăn chặn load lại trang khi submit
-    
+            event.preventDefault(); // Prevent page reload on submit
+
             let message = document.getElementById("userMessage").value.trim();
-            
+
             if (!message) {
-                alert("Vui lòng nhập tin nhắn!");
+                alert("Please enter a message!");
                 return;
             }
-    
+
             let formData = new FormData();
-            formData.append("entry.673168043", message); // Chỉ gửi tin nhắn
-    
-            // Gửi dữ liệu lên Google Forms
+            formData.append("entry.673168043", message);
+
+            // Send data to Google Forms
             fetch("https://docs.google.com/forms/d/e/1FAIpQLScUbIXGOEiytA8HD1HcCcbBLINrFUDGhoUFRMdmhWlFQRGzBA/formResponse", {
                 method: "POST",
                 body: formData,
                 mode: "no-cors"
             })
             .then(() => {
-                alert("Gửi thành công!");
+                // Create iOS-style success message
+                const successDiv = document.getElementById('success');
+                successDiv.innerHTML = `
+                    <div class="ios-alert ios-alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Message sent successfully!</p>
+                    </div>
+                `;
+
+                // Clear the form
                 document.getElementById("contactForm").reset();
+
+                // Hide the success message after 3 seconds
+                setTimeout(() => {
+                    successDiv.innerHTML = '';
+                }, 3000);
             })
             .catch(error => {
-                console.error("Lỗi:", error);
-                alert("Gửi thất bại, vui lòng thử lại!");
+                console.error("Error:", error);
+
+                // Create iOS-style error message
+                const successDiv = document.getElementById('success');
+                successDiv.innerHTML = `
+                    <div class="ios-alert ios-alert-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Failed to send, please try again!</p>
+                    </div>
+                `;
+
+                // Hide the error message after 3 seconds
+                setTimeout(() => {
+                    successDiv.innerHTML = '';
+                }, 3000);
             });
         });
     </script>
-    
-        
 
-    <div class="copyrights">
+
+
+    <footer class="simple-footer">
         <div class="container">
-            <div class="footer-distributed">
-                <div class="footer-left">
-                    <p class="footer-links">
-                        <a href="#">Trang chủ</a>
-                        <a href="#">Duong</a>
-                        <a href="#">Ảnh</a>
-                        <a href="#">Thời tiết</a>
-                        <a href="#">Tin tức</a>
-                        <a href="#">Liên hệ</a>
-                    </p>
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2025 <a href="https://quiz.com/cbc5cd6a-b5fb-4844-adff-3af51c2bd80d/">DuongBill</a> 
-                      
-				
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>DuongBill</h3>
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/duonggbill" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/duonggbill/" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@__traitimtanvo" target="_blank" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://zalo.me/0985082004" target="_blank" class="social-icon">
+                        <i class="fas fa-comment"></i>
+                    </a>
+                </div>
+
+                <div class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#portfolio">Gallery</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#blog">News</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="footer-copyright">
+                    <p>&copy; 2025 DuongBill. All Rights Reserved.</p>
                 </div>
             </div>
-        </div><!-- end container -->
-    </div><!-- end copyrights -->
+        </div>
+    </footer>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
@@ -677,7 +1882,7 @@
     <script src="js/all.js" defer></script>
 	<!-- Camera Slider -->
 	<script src="js/jquery.mobile.customized.min.js" defer></script>
-	<script src="js/jquery.easing.1.3.js" defer></script> 
+	<script src="js/jquery.easing.1.3.js" defer></script>
 	<script src="js/parallaxie.js" defer></script>
 	<script src="js/headline.js" defer></script>
 	<!-- Contact form JavaScript -->
@@ -686,7 +1891,7 @@
     <!-- ALL PLUGINS -->
     <script src="js/custom.js" defer></script>
     <script src="js/jquery.vide.js" defer></script>
-   
+
 
     <script>
         function showQRModal() {
@@ -699,23 +1904,93 @@
     </script>
     <script>
         window.onload = function () {
-    setTimeout(() => {
-        document.getElementById("loading-screen").style.display = "none";
-    }, 1000); // 1 giây sau khi load xong sẽ ẩn loading
-};
+            setTimeout(() => {
+                document.getElementById("loading-screen").style.display = "none";
+            }, 1000); // 1 giây sau khi load xong sẽ ẩn loading
 
-document.addEventListener("DOMContentLoaded", function() {
-    let $grid = $('.gallery-list').isotope({
-        itemSelector: '.gallery-grid'
-    });
+            // Initialize AOS with responsive settings
+            AOS.init({
+                duration: 1000,
+                once: true,
+                mirror: false,
+                disable: 'mobile', // Disable animations on mobile for better performance
+                startEvent: 'DOMContentLoaded',
+                offset: 120,
+                delay: 100
+            });
 
-    // Lọc ngay từ đầu để chỉ hiển thị "Hồi bé"
-    $grid.isotope({ filter: '.gal_a' });
-});
+            // Animate skill bars
+            setTimeout(() => {
+                document.querySelectorAll('.skill-progress').forEach(progress => {
+                    const value = progress.getAttribute('data-progress');
+                    progress.style.width = value + '%';
+                });
+            }, 1500);
+        };
 
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize Isotope
+            let $grid = $('.gallery-list').isotope({
+                itemSelector: '.gallery-grid'
+            });
 
+            // Filter buttons click event
+            $('.filter-button-group').on('click', 'button', function() {
+                var filterValue = $(this).attr('data-filter');
+                $grid.isotope({ filter: filterValue });
 
+                // Update active button
+                $('.filter-button-group button').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Initialize with "Hồi bé" filter
+            $grid.isotope({ filter: '.gal_a' });
+
+            // Initialize prettyPhoto for gallery images
+            $('a[data-rel^=prettyPhoto]').prettyPhoto({
+                social_tools: false,
+                theme: 'pp_default',
+                horizontal_padding: 20,
+                opacity: 0.8,
+                deeplinking: false
+            });
+
+            // Smooth scrolling for anchor links
+            $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html, body').animate({
+                            scrollTop: (target.offset().top - 70)
+                        }, 1000, "easeInOutExpo");
+                        return false;
+                    }
+                }
+            });
+
+            // Newsletter form submission
+            $('#newsletterForm').submit(function(e) {
+                e.preventDefault();
+                alert('Thank you for subscribing to our newsletter!');
+                this.reset();
+            });
+
+            // Add parallax effect to sections
+            $('.section').each(function() {
+                $(this).addClass('parallaxie');
+                $(this).css('background-attachment', 'fixed');
+            });
+        });
     </script>
-  
+
 </body>
 </html>
+<!-- Make sure these scripts are included in the right order -->
+<script src="js/jquery.min.js"></script>
+<script src="js/images-loded.min.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/gallery-fix.js"></script>
+

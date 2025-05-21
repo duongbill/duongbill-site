@@ -1,0 +1,219 @@
+{
+  "categories": [
+    {
+      "id": "childhood",
+      "name": "Hồi bé",
+      "filter": "gal_a",
+      "description": "Memories from early years"
+    },
+    {
+      "id": "family",
+      "name": "Gia đình",
+      "filter": "gal_b",
+      "description": "Moments with loved ones"
+    },
+    {
+      "id": "friends",
+      "name": "Bạn bè",
+      "filter": "gal_c",
+      "description": "Adventures with friends"
+    },
+    {
+      "id": "dbill",
+      "name": "Dbill",
+      "filter": "gal_d",
+      "description": "Personal collection"
+    }
+  ],
+  "images": [
+    {
+      "id": 1,
+      "category": "childhood",
+      "filter": "gal_a",
+      "src": "uploads/child1.JPG",
+      "alt": "Childhood Photo 1",
+      "title": "Hồi bé",
+      "description": "One of my earliest memories"
+    },
+    {
+      "id": 2,
+      "category": "childhood",
+      "filter": "gal_a",
+      "src": "uploads/child2.png",
+      "alt": "Childhood Photo 2",
+      "title": "Hồi bé",
+      "description": "Elementary school memories"
+    },
+    {
+      "id": 3,
+      "category": "childhood",
+      "filter": "gal_a",
+      "src": "uploads/child3.JPG",
+      "alt": "Childhood Photo 3",
+      "title": "Hồi bé",
+      "description": "Fun times as a kid"
+    },
+    {
+      "id": 4,
+      "category": "family",
+      "filter": "gal_b",
+      "src": "uploads/fam1.png",
+      "alt": "Family Photo 1",
+      "title": "Gia đình",
+      "description": "Special moments with family"
+    },
+    {
+      "id": 5,
+      "category": "family",
+      "filter": "gal_b",
+      "src": "uploads/fam2.jpg",
+      "alt": "Family Photo 2",
+      "title": "Gia đình",
+      "description": "Celebrating together"
+    },
+    {
+      "id": 6,
+      "category": "family",
+      "filter": "gal_b",
+      "src": "uploads/f4.jpg",
+      "alt": "Family Photo 3",
+      "title": "Gia đình",
+      "description": "Exploring new places"
+    },
+    {
+      "id": 7,
+      "category": "friends",
+      "filter": "gal_c",
+      "src": "uploads/fen1.jpg",
+      "alt": "Friends Photo 1",
+      "title": "Bạn bè",
+      "description": "Hanging out with friends"
+    },
+    {
+      "id": 8,
+      "category": "friends",
+      "filter": "gal_c",
+      "src": "uploads/fen2.png",
+      "alt": "Friends Photo 2",
+      "title": "Bạn bè",
+      "description": "University memories"
+    },
+    {
+      "id": 9,
+      "category": "friends",
+      "filter": "gal_c",
+      "src": "uploads/fen3.png",
+      "alt": "Friends Photo 3",
+      "title": "Bạn bè",
+      "description": "Weekend adventures"
+    },
+    {
+      "id": 10,
+      "category": "dbill",
+      "filter": "gal_d",
+      "src": "uploads/m1.jpg",
+      "alt": "Dbill Photo 1",
+      "title": "Dbill",
+      "description": "Working on something special"
+    },
+    {
+      "id": 11,
+      "category": "dbill",
+      "filter": "gal_d",
+      "src": "uploads/dbill1.png",
+      "alt": "Dbill Photo 2",
+      "title": "Dbill",
+      "description": "Expressing creativity"
+    },
+    {
+      "id": 12,
+      "category": "dbill",
+      "filter": "gal_d",
+      "src": "uploads/m4.png",
+      "alt": "Dbill Photo 3",
+      "title": "Dbill",
+      "description": "A moment of reflection"
+    },
+    {
+      "id": 13,
+      "category": "family",
+      "filter": "gal_b",
+      "src": "uploads/anh/1.png",
+      "alt": "Family Photo 4",
+      "title": "Gia đình",
+      "description": "More family moments"
+    },
+    {
+      "id": 14,
+      "category": "dbill",
+      "filter": "gal_d",
+      "src": "uploads/anh/2.png",
+      "alt": "Dbill Photo 4",
+      "title": "Dbill",
+      "description": "Personal collection"
+    },
+    {
+      "id": 15,
+      "category": "family",
+      "filter": "gal_b",
+      "src": "uploads/anh/3.png",
+      "alt": "Family Photo 5",
+      "title": "Gia đình",
+      "description": "Family memories"
+    },
+    {
+      "id": 16,
+      "category": "family",
+      "filter": "gal_b",
+      "src": "uploads/anh/5.png",
+      "alt": "Family Photo 6",
+      "title": "Gia đình",
+      "description": "Family gathering"
+    },
+    {
+      "id": 17,
+      "category": "friends",
+      "filter": "gal_c",
+      "src": "uploads/anh/6.png",
+      "alt": "Friends Photo 4",
+      "title": "Bạn bè",
+      "description": "Friends gathering"
+    },
+    {
+      "id": 18,
+      "category": "friends",
+      "filter": "gal_c",
+      "src": "uploads/anh/7.png",
+      "alt": "Friends Photo 5",
+      "title": "Bạn bè",
+      "description": "Friends adventures"
+    },
+    {
+      "id": 19,
+      "category": "general",
+      "filter": "",
+      "src": "uploads/anh/8.png",
+      "alt": "General Photo 1",
+      "title": "Memories",
+      "description": "Special moments"
+    },
+    {
+      "id": 20,
+      "category": "general",
+      "filter": "",
+      "src": "uploads/anh/9.png",
+      "alt": "General Photo 2",
+      "title": "Memories",
+      "description": "Special moments"
+    },
+    {
+      "id": 21,
+      "category": "dbill",
+      "filter": "gal_d",
+      "src": "uploads/anh/10.png",
+      "alt": "Dbill Photo 5",
+      "title": "Dbill",
+      "description": "Personal collection"
+    }
+  ]
+}
