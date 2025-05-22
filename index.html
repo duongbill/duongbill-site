@@ -36,6 +36,15 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <!-- Language Switching -->
+    <script src="js/language.js"></script>
+
+    <!-- Ensure translations are available globally -->
+    <script>
+        // Make sure translations is defined globally
+        window.translations = translations || {};
+    </script>
+
     <style>
         /* Contact Info Styles */
         .contact-info {
@@ -627,6 +636,72 @@
             background: #00c2e0;
         }
 
+        /* Language Switcher Styles */
+        .language-switcher-desktop {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            padding-top: 5px;
+        }
+
+        .language-switcher-mobile {
+            display: flex;
+            position: fixed; /* Changed from absolute to fixed */
+            right: 90px; /* Further increased spacing */
+            top: 20px; /* Fixed position from top */
+            z-index: 1031; /* Higher than navbar z-index */
+        }
+
+        .flag-btn {
+            background: transparent;
+            border: 2px solid transparent;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            width: 36px; /* Slightly larger */
+            height: 24px; /* Slightly larger */
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .flag-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-color: rgba(89, 236, 255, 0.5);
+        }
+
+        .flag-btn:active {
+            transform: translateY(0);
+        }
+
+        .flag-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 991px) {
+            .language-switcher-desktop {
+                margin-left: 0;
+                padding-top: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .language-switcher-mobile {
+                right: 80px; /* Further increased spacing for smaller screens */
+            }
+        }
+
+        /* Ensure flag stays in place when menu is opened */
+        body.menu-open .language-switcher-mobile {
+            right: 90px; /* Keep the same position when menu is open */
+        }
+
         /* Timeline Styles */
         .timeline {
             position: relative;
@@ -953,32 +1028,45 @@
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <img class="img-fluid" src="images/dbilllogo.png" alt="" />
             </a>
+            <!-- Language Switcher (Mobile) -->
+            <div class="language-switcher-mobile d-md-none">
+                <button id="language-toggle-mobile" class="flag-btn" title="Change Language">
+                    <img id="flag-icon-mobile" src="https://flagcdn.com/w40/gb.png" alt="English" class="flag-icon">
+                </button>
+            </div>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-
             <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
+                <a class="nav-link js-scroll-trigger active" href="#home" data-lang="nav_home">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                <a class="nav-link js-scroll-trigger" href="#about" data-lang="nav_about">About</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#portfolio">Gallery</a>
+                <a class="nav-link js-scroll-trigger" href="#portfolio" data-lang="nav_gallery">Gallery</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+                <a class="nav-link js-scroll-trigger" href="#projects" data-lang="nav_projects">Projects</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#testimonials">Weather</a>
+                <a class="nav-link js-scroll-trigger" href="#testimonials" data-lang="nav_weather">Weather</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#blog">News</a>
+                <a class="nav-link js-scroll-trigger" href="#blog" data-lang="nav_news">News</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                <a class="nav-link js-scroll-trigger" href="#contact" data-lang="nav_contact">Contact</a>
+                </li>
+                <!-- Language Switcher (Desktop) -->
+                <li class="nav-item d-none d-md-block">
+                    <div class="language-switcher-desktop">
+                        <button id="language-toggle" class="flag-btn" title="Change Language">
+                            <img id="flag-icon-desktop" src="https://flagcdn.com/w40/gb.png" alt="English" class="flag-icon">
+                        </button>
+                    </div>
                 </li>
             </ul>
             </div>
@@ -987,11 +1075,11 @@
 
 	<section id="home" class="main-banner parallaxie" style="background: url('uploads/bgchinh.png')">
 		<div class="heading">
-			<h1>Hello, I'm Duong</h1>
-            <p>"This is where I share basic information about myself and my life."</p>
+			<h1 data-lang="home_hello">Hello, I'm Duong</h1>
+            <p data-lang="home_intro">"This is where I share basic information about myself and my life."</p>
 <h3 class="cd-headline clip is-full-width">
 
-				<span>Nguyen Hai Duong, aka </span>
+				<span data-lang="home_aka">Nguyen Hai Duong, aka </span>
 				<span class="cd-words-wrapper">
 					<b class="is-visible">DuongBill</b>
 					<b>Traitimtanvo</b>
@@ -1031,16 +1119,16 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="message-box" data-aos="fade-right" data-aos-duration="1000">
-                        <h2>About Me</h2>
-                        <p>Hello everyone, I'm Duong, 21 years old. I'm a third-year student majoring in Information Technology.</p>
-                        <p>This website is where I share my personal projects, technology articles, and my interests. Feel free to explore and connect with me! Have a great day!</p>
+                        <h2 data-lang="about_title">About Me</h2>
+                        <p data-lang="about_p1">Hello everyone, I'm Duong, 21 years old. I'm a third-year student majoring in Information Technology.</p>
+                        <p data-lang="about_p2">This website is where I share my personal projects, technology articles, and my interests. Feel free to explore and connect with me! Have a great day!</p>
 
                         <div class="buttons-container">
                             <a href="./uploads/pdf/CV_NguyenHaiDuong_ENG.pdf" class="sim-btn btn-hover-new" data-text="Download CV(ENG)" download="CV_NguyenHaiDuong_ENG">
-                                <span>Download CV (ENG)</span>
+                                <span data-lang="download_cv_eng">Download CV (ENG)</span>
                             </a>
                             <a href="./uploads/pdf/CV_NguyenHaiDuong_VIE.pdf" class="sim-btn btn-hover-new" data-text="Download CV(VIE)" download="CV_NguyenHaiDuong_VIE">
-                                <span>Download CV (VIE)</span>
+                                <span data-lang="download_cv_vie">Download CV (VIE)</span>
                             </a>
                         </div>
 
@@ -1076,36 +1164,36 @@
 
             <div class="row mt-5">
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="mb-4">My Skills</h3>
+                    <h3 class="mb-4" data-lang="skills_title">My Skills</h3>
                     <div class="skill-item">
-                        <h5>Web Development</h5>
+                        <h5 data-lang="skill_web">Web Development</h5>
                         <div class="skill-bar">
                             <div class="skill-progress" data-progress="80" style="width: 0%"></div>
                         </div>
                     </div>
 
                     <div class="skill-item">
-                        <h5>UI/UX Design</h5>
+                        <h5 data-lang="skill_ui">UI/UX Design</h5>
                         <div class="skill-bar">
                             <div class="skill-progress" data-progress="88" style="width: 0%"></div>
                         </div>
                     </div>
 
                     <div class="skill-item">
-                        <h5>Mobile Development</h5>
+                        <h5 data-lang="skill_mobile">Mobile Development</h5>
                         <div class="skill-bar">
                             <div class="skill-progress" data-progress="60" style="width: 0%"></div>
                         </div>
                     </div>
 
                     <div class="skill-item">
-                        <h5>Database Management</h5>
+                        <h5 data-lang="skill_db">Database Management</h5>
                         <div class="skill-bar">
                             <div class="skill-progress" data-progress="80" style="width: 0%"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <h5>English</h5>
+                        <h5 data-lang="skill_eng">English</h5>
                         <div class="skill-bar">
                             <div class="skill-progress" data-progress="55" style="width: 0%"></div>
                         </div>
@@ -1113,33 +1201,33 @@
                 </div>
 
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="mb-4">Education & Experience</h3>
+                    <h3 class="mb-4" data-lang="edu_title">Education & Experience</h3>
                     <div class="timeline">
                         <div class="timeline-container timeline-right">
                             <div class="timeline-content">
-                                <h4>2022 - Present</h4>
-                                <p>Electric Power University</p>
+                                <h4 data-lang="edu_period_1">2022 - Present</h4>
+                                <p data-lang="edu_school_1">Electric Power University</p>
 
                             </div>
                         </div>
                         <div class="timeline-container timeline-left">
                             <div class="timeline-content">
-                                <h4>2019 - 2022</h4>
-                                <p>Lao Cai City High School No. 1</p>
+                                <h4 data-lang="edu_period_2">2019 - 2022</h4>
+                                <p data-lang="edu_school_2">Lao Cai City High School No. 1</p>
 
                             </div>
                         </div>
                         <div class="timeline-container timeline-right">
                             <div class="timeline-content">
-                                <h4>2015 - 2019</h4>
-                                <p>Bac Cuong Secondary School</p>
+                                <h4 data-lang="edu_period_3">2015 - 2019</h4>
+                                <p data-lang="edu_school_3">Bac Cuong Secondary School</p>
 
                             </div>
                         </div>
                         <div class="timeline-container timeline-left">
                             <div class="timeline-content">
-                                <h4>2010 - 2015</h4>
-                                <p>Le Van Tam Primary School</p>
+                                <h4 data-lang="edu_period_4">2010 - 2015</h4>
+                                <p data-lang="edu_school_4">Le Van Tam Primary School</p>
 
                             </div>
                         </div>
@@ -1153,8 +1241,8 @@
     <div id="projects" class="section lb">
         <div class="container">
             <div class="section-title text-left" data-aos="fade-up">
-                <h3>My Projects</h3>
-                <p>Here are some of my recent projects and works</p>
+                <h3 data-lang="projects_title">My Projects</h3>
+                <p data-lang="projects_subtitle">Here are some of my recent projects and works</p>
             </div>
 
             <div class="row">
@@ -1164,8 +1252,8 @@
                             <img src="uploads/sm.jpg" class="img-fluid" alt="Project 1" />
                         </div>
                         <div class="project-info">
-                            <h4>Smovie</h4>
-                            <p>A comprehensive online movie streaming platform with user reviews, and advanced search functionality.</p>
+                            <h4 data-lang="project1_title">Smovie</h4>
+                            <p data-lang="project1_desc">A comprehensive online movie streaming platform with user reviews, and advanced search functionality.</p>
                             <div class="project-tags">
                                 <span class="project-tag">ReactJS</span>
                                 <span class="project-tag">Django</span>
@@ -1186,8 +1274,8 @@
                             <img src="uploads/sb.jpg" class="img-fluid" alt="Project 2" />
                         </div>
                         <div class="project-info">
-                            <h4>Sbook</h4>
-                            <p>An innovative e-book reader application with customizable reading experience, bookmarking features, and a vast library of digital content.</p>
+                            <h4 data-lang="project2_title">Sbook</h4>
+                            <p data-lang="project2_desc">An innovative e-book reader application with customizable reading experience, bookmarking features, and a vast library of digital content.</p>
                             <div class="project-tags">
                                 <span class="project-tag">ReactNative</span>
                                   <span class="project-tag">NodeJS</span>
@@ -1206,8 +1294,8 @@
                             <img src="uploads/ai.jpg" class="img-fluid" alt="Project 3" />
                         </div>
                         <div class="project-info">
-                            <h4>Text Summarization</h4>
-                            <p>An advanced web-based text summarization tool leveraging natural language processing, machine learning algorithms, and interactive visualization for comprehensive content analysis.</p>
+                            <h4 data-lang="project3_title">Text Summarization</h4>
+                            <p data-lang="project3_desc">An advanced web-based text summarization tool leveraging natural language processing, machine learning algorithms, and interactive visualization for comprehensive content analysis.</p>
                             <div class="project-tags">
                                 <span class="project-tag">Python</span>
 
@@ -1223,7 +1311,7 @@
 
             <div class="text-center mt-4">
                 <a href="#" class="sim-btn btn-hover-new" data-text="View All Projects">
-                    <span>View All Projects</span>
+                    <span data-lang="view_all_projects">View All Projects</span>
                 </a>
             </div>
         </div>
@@ -1233,19 +1321,19 @@
     <div id="portfolio" class="section lb">
 		<div class="container">
 			<div class="section-title text-left">
-                <h3>Gallery</h3>
-                <p>Each photo tells a story, a chapter in the meaningful journey of my personal experiences.</p>
+                <h3 data-lang="gallery_title">Gallery</h3>
+                <p data-lang="gallery_subtitle">Each photo tells a story, a chapter in the meaningful journey of my personal experiences.</p>
             </div><!-- end title -->
 
 			<div class="gallery-menu row">
 				<div class="col-md-12">
 					<div class="button-group filter-button-group text-left">
 
-						<button class="active" data-filter=".gal_a">Hồi bé</button>
-						<button data-filter=".gal_b">Gia đình</button>
-						<button data-filter=".gal_c">Bạn bè</button>
-                        <button data-filter=".gal_d">Dbill</button>
-                        <button data-filter="*">Tất cả</button>
+                <button class="active" data-filter=".gal_a" data-lang="gallery_childhood">Childhood</button>
+                <button data-filter=".gal_b" data-lang="gallery_family">Family</button>
+                <button data-filter=".gal_c" data-lang="gallery_friends">Friends</button>
+                <button data-filter=".gal_d">Dbill</button>
+                <button data-filter="*" data-lang="gallery_all">All</button>
 
 					</div>
 				</div>
@@ -1535,8 +1623,8 @@
     <div id="testimonials" class="section wb">
         <div class="container">
           <div class="section-title text-left">
-            <h3>Weather Information</h3>
-            <p>Current weather information for cities and countries around the world.</p>
+            <h3 data-lang="weather_title">Weather Information</h3>
+            <p data-lang="weather_subtitle">Current weather information for cities and countries around the world.</p>
           </div>
         </div>
     </div>
@@ -1545,7 +1633,7 @@
 
     <main class="weather-widget">
         <form>
-          <input type="text" id="name" autocomplete="off" placeholder="Enter city name...">
+          <input type="text" id="name" autocomplete="off" placeholder="Enter city name..." data-lang-placeholder="weather_input_placeholder">
           <button>
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -1566,17 +1654,17 @@
           <p class="description">Cloudy</p>
           <ul>
             <li>
-              <span>Clouds</span>
+              <span data-lang="weather_clouds">Clouds</span>
               <i class="fa-solid fa-cloud"></i>
               <span id="clouds">69</span>%
             </li>
             <li>
-              <span>Humidity</span>
+              <span data-lang="weather_humidity">Humidity</span>
               <i class="fa-solid fa-droplet"></i>
               <span id="humidity">69</span>%
             </li>
             <li>
-              <span>Pressure</span>
+              <span data-lang="weather_pressure">Pressure</span>
               <i class="fa-solid fa-gauge"></i>
               <span id="pressure">1015</span>hPa
             </li>
@@ -1642,8 +1730,8 @@
 	<div id="blog" class="section lb">
 		<div class="container">
 			<div class="section-title text-center" data-aos="fade-up">
-                <h3>News</h3>
-                <p>Some recent news</p>
+                <h3 data-lang="news_title">News</h3>
+                <p data-lang="news_subtitle">Some recent news</p>
             </div><!-- end title -->
 
 			<div class="row">
@@ -1657,12 +1745,12 @@
                                     <span class="month">Aug</span>
                                 </div>
                                 <div class="post-category">
-                                    <span>Entertainment</span>
+                                    <span data-lang="news_category_1">Entertainment</span>
                                 </div>
                             </div>
                             <div class="post-info">
-                                <h4>Pam dear - "entertainment seedling"</h4>
-                                <p>Pamela, also known as Pam dear by many netizens, real name Hai Duong, born in 2022 and is the first daughter of actress. She has become a social media sensation with her adorable videos.</p>
+                                <h4 data-lang="news_title_1">Pam dear - "entertainment seedling"</h4>
+                                <p data-lang="news_desc_1">Pamela, also known as Pam dear by many netizens, real name Hai Duong, born in 2022 and is the first daughter of actress. She has become a social media sensation with her adorable videos.</p>
                             </div>
                         </div>
                     </a>
@@ -1678,12 +1766,12 @@
                                     <span class="month">Jul</span>
                                 </div>
                                 <div class="post-category">
-                                    <span>Lifestyle</span>
+                                    <span data-lang="news_category_2">Lifestyle</span>
                                 </div>
                             </div>
                             <div class="post-info">
-                                <h4>The many facets of love</h4>
-                                <p>Love is one of the most used nouns and is said to be one of the oldest in human history. This article explores the different dimensions of love and how it shapes our lives and relationships.</p>
+                                <h4 data-lang="news_title_2">The many facets of love</h4>
+                                <p data-lang="news_desc_2">Love is one of the most used nouns and is said to be one of the oldest in human history. This article explores the different dimensions of love and how it shapes our lives and relationships.</p>
                             </div>
                         </div>
                     </a>
@@ -1699,12 +1787,12 @@
                                     <span class="month">Jun</span>
                                 </div>
                                 <div class="post-category">
-                                    <span>Music</span>
+                                    <span data-lang="news_category_3">Music</span>
                                 </div>
                             </div>
                             <div class="post-info">
-                                <h4>BlackPink show in Hanoi</h4>
-                                <p>After the first Born Pink night in Hanoi, the audience felt satisfied and excited. The show encountered heavy rain at the beginning but continued with spectacular performances and effects.</p>
+                                <h4 data-lang="news_title_3">BlackPink show in Hanoi</h4>
+                                <p data-lang="news_desc_3">After the first Born Pink night in Hanoi, the audience felt satisfied and excited. The show encountered heavy rain at the beginning but continued with spectacular performances and effects.</p>
                             </div>
                         </div>
                     </a>
@@ -1713,7 +1801,7 @@
 
             <div class="text-center mt-5">
                 <a href="#" class="sim-btn btn-hover-new" data-text="View More News">
-                    <span>View More News</span>
+                    <span data-lang="view_more_news">View More News</span>
                 </a>
             </div>
 		</div>
@@ -1722,8 +1810,8 @@
     <div id="contact" class="section db">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Contact Me</h3>
-                <p>
+                <h3 data-lang="contact_title">Contact Me</h3>
+                <p data-lang="contact_subtitle">
                     Feel free to reach out through any of these channels or send me a message directly.
                     I'd love to hear from you!</p>
             </div>
@@ -1731,9 +1819,9 @@
             <div class="row contact-container">
                 <div class="col-md-6 contact-info-col">
                     <div class="contact-info">
-                        <h4>Contact Information</h4>
+                        <h4 data-lang="contact_info_title">Contact Information</h4>
                         <ul class="contact-details">
-                            <li><i class="fa fa-phone"></i> Phone: <a href="tel:+84985082004">0985082004</a></li>
+                            <li><i class="fa fa-phone"></i> <span data-lang="contact_phone">Phone</span>: <a href="tel:+84985082004">0985082004</a></li>
                             <li><i class="fa fa-envelope"></i> Gmail: <a href="mailto:billduongg@gmail.com">billduongg@gmail.com</a></li>
                             <li><i class="fab fa-telegram"></i> Telegram: <a href="https://t.me/duonggbill" target="_blank">@duonggbill</a></li>
                         </ul>
@@ -1742,12 +1830,12 @@
                 <div class="col-md-6 contact-form-col">
                     <div class="ios-contact-form">
                         <div id="message"></div>
-                        <h4>Anonymous Messages</h4>
+                        <h4 data-lang="contact_anon_title">Anonymous Messages</h4>
                         <form id="contactForm" name="sentMessage" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="ios-form-group">
-                                        <textarea class="ios-form-control" id="userMessage" placeholder="Enter your message here..." required="required" data-validation-required-message="Please enter a message."></textarea>
+                                        <textarea class="ios-form-control" id="userMessage" placeholder="Enter your message here..." data-lang-placeholder="contact_message_placeholder" required="required" data-validation-required-message="Please enter a message."></textarea>
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
@@ -1755,7 +1843,7 @@
                                 <div class="col-lg-12 text-center">
                                     <div id="success"></div>
                                     <button id="sendMessageButton" class="ios-button" type="submit">
-                                        <span>Send Message</span>
+                                        <span data-lang="contact_send_button">Send Message</span>
                                         <i class="fas fa-paper-plane"></i>
                                     </button>
                                 </div>
@@ -1861,12 +1949,12 @@
                 </div>
 
                 <div class="footer-nav">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#portfolio">Gallery</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#blog">News</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#home" data-lang="nav_home">Home</a>
+                    <a href="#about" data-lang="nav_about">About</a>
+                    <a href="#portfolio" data-lang="nav_gallery">Gallery</a>
+                    <a href="#projects" data-lang="nav_projects">Projects</a>
+                    <a href="#blog" data-lang="nav_news">News</a>
+                    <a href="#contact" data-lang="nav_contact">Contact</a>
                 </div>
 
                 <div class="footer-copyright">
@@ -1981,6 +2069,47 @@
             $('.section').each(function() {
                 $(this).addClass('parallaxie');
                 $(this).css('background-attachment', 'fixed');
+            });
+
+            // Apply language based on saved preference
+            const savedLang = localStorage.getItem('language') || 'en';
+
+            // Initialize flag icons based on saved language
+            if (savedLang === 'en') {
+                $('#flag-icon-desktop, #flag-icon-mobile').attr('src', 'https://flagcdn.com/w40/gb.png').attr('alt', 'English');
+            } else {
+                $('#flag-icon-desktop, #flag-icon-mobile').attr('src', 'https://flagcdn.com/w40/vn.png').attr('alt', 'Tiếng Việt');
+
+                // Force apply Vietnamese language
+                setTimeout(function() {
+                    // Get all elements with data-lang attribute
+                    const elements = document.querySelectorAll("[data-lang]");
+
+                    // Update text content based on language
+                    elements.forEach((element) => {
+                        const key = element.getAttribute("data-lang");
+                        if (translations[key] && translations[key]['vi']) {
+                            element.textContent = translations[key]['vi'];
+                        }
+                    });
+
+                    // Update data-text attributes for buttons
+                    const buttons = document.querySelectorAll("[data-text]");
+                    buttons.forEach((button) => {
+                        const text = button.getAttribute("data-text");
+                        const key = "btn_" + text.toLowerCase().replace(/\s+/g, "_");
+                        if (translations[key] && translations[key]['vi']) {
+                            button.setAttribute("data-text", translations[key]['vi']);
+                        }
+                    });
+
+                    console.log("Vietnamese language applied on page load");
+                }, 500);
+            }
+
+            // Handle menu toggle to add/remove menu-open class to body
+            $('.navbar-toggler').click(function() {
+                $('body').toggleClass('menu-open');
             });
         });
     </script>
