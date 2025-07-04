@@ -174,8 +174,8 @@ const translations = {
     vi: "Về tôi",
   },
   about_p1: {
-    en: "Hello everyone, I'm Duong, 21 years old. I'm a third-year student majoring in Information Technology.",
-    vi: "Xin chào mọi người, tôi là Dương, 21 tuổi. Tôi là sinh viên năm thứ ba chuyên ngành Công nghệ thông tin.",
+    en: "Hello everyone, I'm Duong, 21 years old. I'm a four-year student majoring in Information Technology.",
+    vi: "Xin chào mọi người, tôi là Dương, 21 tuổi. Tôi là sinh viên năm thứ tư chuyên ngành Công nghệ thông tin.",
   },
   about_p2: {
     en: "This website is where I share my personal projects, technology articles, and my interests. Feel free to explore and connect with me! Have a great day!",
