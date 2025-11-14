@@ -291,6 +291,56 @@ const translations = {
     en: "An advanced web-based text summarization tool leveraging natural language processing, machine learning algorithms, and interactive visualization for comprehensive content analysis.",
     vi: "Công cụ tóm tắt văn bản trên web nâng cao sử dụng xử lý ngôn ngữ tự nhiên, thuật toán học máy và trực quan hóa tương tác để phân tích nội dung toàn diện.",
   },
+  // Featured project (Đèn Hải Đăng LC)
+  featured_title: {
+    en: "Den Hai Dang LC — E‑commerce Platform",
+    vi: "Đèn Hải Đăng LC — Nền tảng Thương mại Điện tử",
+  },
+  featured_desc: {
+    en: "E‑commerce platform for decorative lighting. Built with React (Vite), Node.js, MongoDB and Tailwind. Features: catalog, smart search, cart & checkout, admin dashboard, Cloudflare R2 image storage, Facebook login and PWA support.",
+    vi: "Nền tảng thương mại điện tử chuyên về đèn trang trí. Xây dựng bằng React (Vite), Node.js, MongoDB và Tailwind. Tính năng: danh mục, tìm kiếm thông minh, giỏ hàng & thanh toán, dashboard quản trị, lưu ảnh lên Cloudflare R2, đăng nhập Facebook và hỗ trợ PWA.",
+  },
+  featured_tag_react: {
+    en: "React • Vite",
+    vi: "React • Vite",
+  },
+  featured_tag_node: {
+    en: "Node.js • Express",
+    vi: "Node.js • Express",
+  },
+  featured_tag_mongo: {
+    en: "MongoDB",
+    vi: "MongoDB",
+  },
+  featured_tag_tailwind: {
+    en: "Tailwind",
+    vi: "Tailwind",
+  },
+  featured_tag_r2: {
+    en: "Cloudflare R2",
+    vi: "Cloudflare R2",
+  },
+  featured_tag_pwa: {
+    en: "PWA • SEO",
+    vi: "PWA • SEO",
+  },
+  // Buttons for featured project
+  btn_live_demo: {
+    en: "Live Demo",
+    vi: "Xem Demo",
+  },
+  btn_website: {
+    en: "Website",
+    vi: "Trang web",
+  },
+  btn_case_study: {
+    en: "Case Study",
+    vi: "Case Study",
+  },
+  btn_learn_more: {
+    en: "Learn More",
+    vi: "Tìm hiểu thêm",
+  },
 
   // Gallery section
   gallery_title: {
@@ -401,26 +451,38 @@ const translations = {
   },
   contact_subtitle: {
     en: "Feel free to reach out through any of these channels or send me a message directly. I'd love to hear from you!",
-    vi: "Hãy liên hệ với tôi qua bất kỳ kênh nào hoặc gửi tin nhắn trực tiếp. Tôi rất muốn nghe từ bạn!",
+    vi: "Hãy thoải mái liên hệ qua bất kỳ kênh nào hoặc gửi tin nhắn trực tiếp cho tôi. Tôi rất mong được nghe từ bạn!",
   },
   contact_info_title: {
-    en: "Contact Information",
-    vi: "Thông tin liên hệ",
+    en: "Get In Touch",
+    vi: "Liên hệ",
   },
   contact_phone: {
     en: "Phone",
     vi: "Điện thoại",
   },
   contact_anon_title: {
-    en: "Anonymous Messages",
-    vi: "Tin nhắn ẩn danh",
+    en: "Send Anonymous Message",
+    vi: "Gửi tin nhắn ẩn danh",
+  },
+  contact_form_desc: {
+    en: "Your message will be sent directly to me. Feel free to share anything!",
+    vi: "Tin nhắn của bạn sẽ được gửi trực tiếp cho tôi. Hãy thoải mái chia sẻ bất cứ điều gì!",
+  },
+  contact_message_label: {
+    en: "Your Message",
+    vi: "Tin nhắn của bạn",
   },
   contact_message_placeholder: {
-    en: "Enter your message here...",
+    en: "Type your message here...",
     vi: "Nhập tin nhắn của bạn tại đây...",
   },
   contact_send_button: {
     en: "Send Message",
     vi: "Gửi tin nhắn",
+  },
+  social_connect: {
+    en: "Connect with me",
+    vi: "Kết nối với tôi",
   },
 };

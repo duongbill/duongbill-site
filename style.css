@@ -2698,6 +2698,49 @@ select.mobile-device {
     font-weight: bold;
 }
 
+/* Featured project website button */
+.project-visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg,#2b6cb0 0%, #235a91 100%);
+    box-shadow: 0 8px 18px rgba(35, 90, 145, 0.18);
+    transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+    border: none;
+}
+.project-visit-btn i {
+    font-size: 18px;
+    opacity: 0.95;
+    transform: translateY(0);
+    transition: transform 220ms ease;
+}
+.project-visit-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(35, 90, 145, 0.24);
+    filter: brightness(1.02);
+}
+.project-visit-btn:focus {
+    outline: 2px solid rgba(89,236,255,0.18);
+    outline-offset: 3px;
+}
+.project-visit-btn:active {
+    transform: translateY(-1px) scale(0.995);
+}
+
+/* Responsive: make button full width on very small screens */
+@media (max-width: 480px) {
+    .project-visit-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 18px;
+    }
+}
+
 .section.wb {
     background-color: #ffffff;
     padding: 70px 0 0 0;
