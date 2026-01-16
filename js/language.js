@@ -5,49 +5,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Apply the saved language on page load
   applyLanguage(currentLang);
+  updateLanguageHighlight(currentLang);
 
   // Desktop language toggle button event listener
-  document
-    .getElementById("language-toggle")
-    .addEventListener("click", function () {
-      // Toggle between languages
-      currentLang = currentLang === "en" ? "vi" : "en";
-      localStorage.setItem("language", currentLang);
-      // Reload the page to ensure all translations are applied correctly
-      window.location.reload();
-    });
+  if (document.getElementById("language-toggle")) {
+    document
+      .getElementById("language-toggle")
+      .addEventListener("click", function () {
+        // Toggle between languages
+        currentLang = currentLang === "en" ? "vi" : "en";
+        localStorage.setItem("language", currentLang);
+        applyLanguageContent(currentLang);
+        updateLanguageHighlight(currentLang);
+      });
+  }
 
   // Mobile language toggle button event listener
-  document
-    .getElementById("language-toggle-mobile")
-    .addEventListener("click", function () {
-      // Toggle between languages
-      currentLang = currentLang === "en" ? "vi" : "en";
-      localStorage.setItem("language", currentLang);
-      // Reload the page to ensure all translations are applied correctly
-      window.location.reload();
-    });
+  if (document.getElementById("language-toggle-mobile")) {
+    document
+      .getElementById("language-toggle-mobile")
+      .addEventListener("click", function () {
+        // Toggle between languages
+        currentLang = currentLang === "en" ? "vi" : "en";
+        localStorage.setItem("language", currentLang);
+        applyLanguageContent(currentLang);
+        updateLanguageHighlight(currentLang);
+      });
+  }
 
   // Function to apply language
   function applyLanguage(lang) {
-    // Update the flag icons
-    const desktopFlagIcon = document.getElementById("flag-icon-desktop");
-    const mobileFlagIcon = document.getElementById("flag-icon-mobile");
-
-    if (lang === "en") {
-      // Show UK flag for English
-      desktopFlagIcon.src = "https://flagcdn.com/w40/gb.png";
-      desktopFlagIcon.alt = "English";
-      mobileFlagIcon.src = "https://flagcdn.com/w40/gb.png";
-      mobileFlagIcon.alt = "English";
-    } else {
-      // Show Vietnam flag for Vietnamese
-      desktopFlagIcon.src = "https://flagcdn.com/w40/vn.png";
-      desktopFlagIcon.alt = "Tiếng Việt";
-      mobileFlagIcon.src = "https://flagcdn.com/w40/vn.png";
-      mobileFlagIcon.alt = "Tiếng Việt";
-    }
-
     // Update the html lang attribute
     document.documentElement.setAttribute("lang", lang);
 
@@ -115,12 +102,62 @@ document.addEventListener("DOMContentLoaded", function () {
         cityInput.placeholder = translations["weather_input_placeholder"][lang];
       }
     }
-
-    // Log to console for debugging
-    console.log("Language changed to: " + lang);
-    console.log("All elements updated");
   }
 });
+
+// Function to apply language content (called when language is changed)
+function applyLanguageContent(lang) {
+  // Get all elements with data-lang attribute
+  const elements = document.querySelectorAll("[data-lang]");
+
+  // Update text content based on language
+  elements.forEach((element) => {
+    const key = element.getAttribute("data-lang");
+    if (translations[key] && translations[key][lang]) {
+      element.textContent = translations[key][lang];
+    }
+  });
+
+  // Special handling for navigation items
+  const navItems = document.querySelectorAll(".nav-link[data-lang]");
+  navItems.forEach((navItem) => {
+    const key = navItem.getAttribute("data-lang");
+    if (translations[key] && translations[key][lang]) {
+      navItem.textContent = translations[key][lang];
+    }
+  });
+
+  // Update placeholder attributes
+  const placeholders = document.querySelectorAll("[data-lang-placeholder]");
+  placeholders.forEach((element) => {
+    const key = element.getAttribute("data-lang-placeholder");
+    if (translations[key] && translations[key][lang]) {
+      element.setAttribute("placeholder", translations[key][lang]);
+    }
+  });
+
+  // Update html lang attribute
+  document.documentElement.setAttribute("lang", lang);
+}
+
+// Function to update language highlight
+function updateLanguageHighlight(lang) {
+  // Remove active class from all language spans
+  document.querySelectorAll(".lang-eng, .lang-vi").forEach((span) => {
+    span.classList.remove("active");
+  });
+
+  // Add active class to current language spans
+  if (lang === "en") {
+    document.querySelectorAll(".lang-eng").forEach((span) => {
+      span.classList.add("active");
+    });
+  } else {
+    document.querySelectorAll(".lang-vi").forEach((span) => {
+      span.classList.add("active");
+    });
+  }
+}
 
 // Translations object
 const translations = {
@@ -174,12 +211,12 @@ const translations = {
     vi: "Về tôi",
   },
   about_p1: {
-    en: "Hello everyone, I'm Duong, 21 years old. I'm a four-year student majoring in Information Technology.",
-    vi: "Xin chào mọi người, tôi là Dương, 21 tuổi. Tôi là sinh viên năm thứ tư chuyên ngành Công nghệ thông tin.",
+    en: "Hello — I'm Duong, 21, currently studying Information Technology. I focus on building practical web applications and experimenting with machine learning.",
+    vi: "Xin chào — Tôi là Dương, 21 tuổi, hiện đang theo học Khoa học Công nghệ Thông tin. Tôi tập trung vào việc xây dựng các ứng dụng web thực tiễn và thử nghiệm với máy học.",
   },
   about_p2: {
-    en: "This website is where I share my personal projects, technology articles, and my interests. Feel free to explore and connect with me! Have a great day!",
-    vi: "Trang web này là nơi tôi chia sẻ các dự án cá nhân, bài viết công nghệ và sở thích của mình. Hãy thoải mái khám phá và kết nối với tôi! Chúc bạn một ngày tốt lành!",
+    en: "This site showcases my projects, articles and experiments. Feel free to explore and get in touch.",
+    vi: "Trang web này giới thiệu các dự án, bài viết và thử nghiệm của tôi. Hãy thoải mái khám phá và liên hệ.",
   },
   download_cv_eng: {
     en: "Download CV (ENG)",
@@ -220,6 +257,14 @@ const translations = {
   edu_title: {
     en: "Education & Experience",
     vi: "Học vấn & Kinh nghiệm",
+  },
+  edu_period_0: {
+    en: "2026 - Present",
+    vi: "2026 - Hiện tại",
+  },
+  edu_school_0: {
+    en: "Zensho Hà Nội System Center",
+    vi: "Zensho Hà Nội System Center",
   },
   edu_period_1: {
     en: "2022 - Present",
@@ -337,9 +382,9 @@ const translations = {
     en: "Case Study",
     vi: "Case Study",
   },
-  btn_learn_more: {
-    en: "Learn More",
-    vi: "Tìm hiểu thêm",
+  btn_website: {
+    en: "Website",
+    vi: "Trang web",
   },
 
   // Gallery section
@@ -398,6 +443,26 @@ const translations = {
   news_title: {
     en: "News",
     vi: "Tin tức",
+  },
+  news_subtitle: {
+    en: "Recent updates and stories.",
+    vi: "Cập nhật gần đây và các câu chuyện.",
+  },
+  weather_title: {
+    en: "Weather Information",
+    vi: "Thông tin thời tiết",
+  },
+  weather_subtitle: {
+    en: "Current weather details for cities worldwide.",
+    vi: "Thông tin thời tiết hiện tại cho các thành phố trên thế giới.",
+  },
+  news_title: {
+    en: "News",
+    vi: "Tin tức",
+  },
+  news_subtitle: {
+    en: "Recent updates and stories.",
+    vi: "Cập nhật gần đây và các câu chuyện.",
   },
   news_subtitle: {
     en: "Some recent news",
@@ -464,6 +529,14 @@ const translations = {
   contact_anon_title: {
     en: "Send Anonymous Message",
     vi: "Gửi tin nhắn ẩn danh",
+  },
+  contact_title: {
+    en: "Contact",
+    vi: "Liên hệ",
+  },
+  contact_subtitle: {
+    en: "Let's connect! Choose your preferred way to reach out.",
+    vi: "Hãy kết nối! Chọn cách liên hệ yêu thích của bạn.",
   },
   contact_form_desc: {
     en: "Your message will be sent directly to me. Feel free to share anything!",

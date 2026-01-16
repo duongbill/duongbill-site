@@ -642,7 +642,7 @@ xclip
     display: flex;
     gap: 10px;
  
-    
+
 }
 .social-icon {
     display: flex;
@@ -652,49 +652,63 @@ xclip
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #f1f1f1;
     text-decoration: none;
     font-size: 20px;
-    color: #333;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    transform-origin: center;
 }
 
-/* Hover màu riêng cho từng mạng xã hội */
-.facebook:hover {
+/* Màu nền tương ứng cho từng mạng xã hội */
+.social-icon.facebook,
+.facebook {
     background-color: #1877F2;
     color: #fff;
-    transform: scale(1.1);
 }
-.instagram:hover {
+
+.social-icon.instagram,
+.instagram {
     background-color: #E4405F;
     color: #fff;
-    transform: scale(1.1);
 }
-.youtube:hover {
+
+.social-icon.youtube,
+.youtube {
     background-color: #FF0000;
     color: #fff;
-    transform: scale(1.1);
 }
-.qr:hover {
+
+.social-icon.qr,
+.qr {
     background-color: #fd76e9;
     color: #fff;
+}
+
+.social-icon.zalo,
+.zalo {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* Hover effect */
+.social-icon:hover,
+.facebook:hover,
+.instagram:hover,
+.youtube:hover,
+.qr:hover,
+.zalo:hover {
     transform: scale(1.1);
 }
 
 .zalo img {
-    width: 24px;
-    height: 24px;
-    transition: opacity 0.3s ease;
-}
-.zalo:hover {
-    background-color: #1873d5;
-    color: #fff;
-    transform: scale(1.1);
-}
-
-.zalo:hover img {
-    content: url('./uploads/zalo-icon.png');
-    
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+    display: block;
 }
 
 .locket img {
@@ -1634,9 +1648,9 @@ hr.invis1 {
 
 .filter-button-group button.active,
 .filter-button-group button:hover {
-    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    background: linear-gradient(45deg, #1877F2, #4DA3FF);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
 }
 
 /* Category labels */
