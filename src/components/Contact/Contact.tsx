@@ -1,6 +1,5 @@
 "use client";
 import { slideIn } from "@/utils/motion";
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { SectionWrapper } from "@/components/HigherOrderComponents";
@@ -26,35 +25,40 @@ const Contact = () => {
 		setForm({ ...form, [name]: value });
 	};
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		if (!form.name || !form.email || !form.message) {
+			alert(t("contact.errorMsg") || "Please fill in all fields.");
+			return;
+		}
 		setLoading(true);
-		emailjs
-			.send(
-				"service_91ssn8g",
-				"template_jjegxdr",
-				{
-					from_name: form.name,
-					to_name: "Om Patel",
-					from_email: form.email,
-					to_email: "omunite21@gmail.com",
-					message: form.message,
+		try {
+			const response = await fetch("/api/contact", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
 				},
-				"VeFeVdEHL9F9_i6xp",
-			)
-			.then(() => {
+				body: JSON.stringify(form),
+			});
+
+			const data = await response.json();
+
+			if (response.ok) {
 				setLoading(false);
-				alert(t("contact.successMsg"));
+				alert(t("contact.successMsg") || "Message sent successfully!");
 				setForm({
 					name: "",
 					email: "",
 					message: "",
 				});
-			})
-			.catch((error) => {
+			} else {
 				setLoading(false);
-				alert(t("contact.errorMsg"));
-			});
+				alert(data.error || t("contact.errorMsg") || "Failed to send message.");
+			}
+		} catch (error) {
+			setLoading(false);
+			alert(t("contact.errorMsg") || "Something went wrong.");
+		}
 	};
 
 	return (
