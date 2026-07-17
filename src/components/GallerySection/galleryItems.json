@@ -1,0 +1,98 @@
+[
+  {
+    "image": "/media/gallery/childhood/child-1.jpg",
+    "category": "Childhood",
+    "title": "Sweet Memory",
+    "year": "Early years"
+  },
+  {
+    "image": "/media/gallery/childhood/child-2.png",
+    "category": "Childhood",
+    "title": "Childhood Memory 2",
+    "year": "Early years"
+  },
+  {
+    "image": "/media/gallery/childhood/child-3.jpg",
+    "category": "Childhood",
+    "title": "Childhood Memory 3",
+    "year": "Early years"
+  },
+  {
+    "image": "/media/gallery/dbill/dbill-1.jpg",
+    "category": "Dbill",
+    "title": "Personal Style",
+    "year": "Personal log"
+  },
+  {
+    "image": "/media/gallery/dbill/dbill-2.png",
+    "category": "Dbill",
+    "title": "Casual Look",
+    "year": "Personal log"
+  },
+  {
+    "image": "/media/gallery/dbill/dbill-3.png",
+    "category": "Dbill",
+    "title": "Profile Shoot",
+    "year": "Personal log"
+  },
+  {
+    "image": "/media/gallery/dbill/portrait-1.jpg",
+    "category": "Dbill",
+    "title": "Candid Shot",
+    "year": "Personal log"
+  },
+  {
+    "image": "/media/gallery/family/family-1.jpg",
+    "category": "Family",
+    "title": "Family Moment 1",
+    "year": "Memorable days"
+  },
+  {
+    "image": "/media/gallery/family/family-1.png",
+    "category": "Family",
+    "title": "Family Gathering",
+    "year": "Memorable days"
+  },
+  {
+    "image": "/media/gallery/family/family-2.jpg",
+    "category": "Family",
+    "title": "Warmth of Home",
+    "year": "Memorable days"
+  },
+  {
+    "image": "/media/gallery/family/family-3.jpg",
+    "category": "Family",
+    "title": "Family Reunion",
+    "year": "Memorable days"
+  },
+  {
+    "image": "/media/gallery/friends/friends-1.jpg",
+    "category": "Friends",
+    "title": "Friendship Story",
+    "year": "School days"
+  },
+  {
+    "image": "/media/gallery/friends/friends-2.png",
+    "category": "Friends",
+    "title": "Joyful Moments",
+    "year": "School days"
+  },
+  {
+    "image": "/media/gallery/friends/friends-3.png",
+    "category": "Friends",
+    "title": "Friends Hangout 3",
+    "year": "School days"
+  },
+  {
+    "image": "/media/gallery/others/moment-1.jpg",
+    "category": "Others",
+    "title": "Visual Diary 1",
+    "year": "Gallery"
+  },
+  {
+    "image": "/media/gallery/others/moment-1.png",
+    "category": "Others",
+    "title": "Visual Diary 1",
+    "year": "Gallery"
+  }
+]

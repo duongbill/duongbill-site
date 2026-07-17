@@ -1,0 +1,797 @@
+.about {
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+/* Bento Grid Container */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  padding: 0;
+}
+
+/* Base Bento Card */
+.bentoCard {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 36px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: border-color 0.4s var(--ease-out-expo), 
+              box-shadow 0.4s var(--ease-out-expo),
+              transform 0.2s var(--ease-out-quart);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.bentoCard:hover {
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px var(--accent-glow);
+}
+
+/* Hover Spotlight Effect */
+.bentoCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 280px at var(--mouse-x, 0) var(--mouse-y, 0), 
+    rgba(89, 236, 255, 0.08), 
+    transparent 80%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+}
+
+.bentoCard:hover::before {
+  opacity: 1;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+}
+
+/* Individual Card Grid Spans */
+.cardBio {
+  grid-column: span 12;
+}
+
+
+.cardSpecs {
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 400px;
+}
+
+.cardSkills {
+  grid-column: span 7;
+}
+
+.cardTimeline {
+  grid-column: span 12;
+}
+
+/* Bio Card Styles */
+.statusTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(89, 236, 255, 0.05);
+  border: 1px solid rgba(89, 236, 255, 0.15);
+  border-radius: 99px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+}
+
+.statusPulse {
+  width: 7px;
+  height: 7px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 12px var(--accent); }
+  100% { transform: scale(0.95); opacity: 0.6; }
+}
+
+.bioHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.bioName {
+  font-size: clamp(1.8rem, 4.2vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  margin-bottom: 0;
+  color: var(--text-primary);
+}
+
+.bioName span {
+  display: inline;
+}
+
+.bioName span:first-child {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-right: 8px;
+}
+
+.bioIntro {
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.bioText {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.socialRow {
+  display: flex;
+  gap: 16px;
+}
+
+.cvBioRow {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cvBioBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: var(--text-inverse);
+  border-radius: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s var(--ease-out-quart);
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cvBioBtn:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+.cvBioBtnOutline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.cvBioBtnOutline:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  transition: all 0.3s var(--ease-out-quart);
+}
+
+.socialLink:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 20px var(--accent-glow);
+}
+
+/* Avatar Card Styles (HUD camera theme) */
+.avatarGridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--grid-overlay) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--grid-overlay) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.scannerLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 12px var(--accent);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 2;
+  animation: scan 5s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+.hudBracket {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--accent);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.45;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.bentoCard:hover .hudBracket {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.bracketTopLeft { top: 24px; left: 24px; border-width: 2px 0 0 2px; }
+.bracketTopRight { top: 24px; right: 24px; border-width: 2px 2px 0 0; }
+.bracketBottomLeft { bottom: 24px; left: 24px; border-width: 0 0 2px 2px; }
+.bracketBottomRight { bottom: 24px; right: 24px; border-width: 0 2px 2px 0; }
+
+.hudHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+.hudDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff5f56;
+}
+
+.avatarContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  position: relative;
+  z-index: 1;
+  min-height: 380px;
+}
+
+.avatarBgCircle {
+  position: absolute;
+  width: 290px;
+  height: 290px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 110, 203, 0.18) 0%, rgba(56, 110, 203, 0.02) 65%, transparent 80%);
+  border: 1px solid rgba(56, 110, 203, 0.12);
+  z-index: 0;
+  animation: rotate-clockwise-avatar 55s linear infinite, pulse-avatar-bg 5s ease-in-out infinite alternate;
+}
+
+@keyframes rotate-clockwise-avatar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-avatar-bg {
+  0% { transform: scale(0.92); opacity: 0.8; }
+  100% { transform: scale(1.08); opacity: 1; }
+}
+
+.avatarImage {
+  height: 340px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.35)) drop-shadow(0 4px 12px rgba(56, 110, 203, 0.2));
+  transition: transform 0.6s var(--ease-out-expo);
+  z-index: 2;
+}
+
+.bentoCard:hover .avatarImage {
+  transform: scale(1.06) translateY(-4px);
+}
+
+.hudFooter {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 2;
+}
+
+/* Specs/Terminal Card Styles */
+/* Specs/Profile Card Styles */
+.specsHeader {
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.specsTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+}
+
+.specsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.specItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.specItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.specLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.specValue {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.quickConnect {
+  position: relative;
+  z-index: 1;
+}
+
+.connectLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.copyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 6px 6px 6px 16px;
+  transition: border-color 0.3s ease;
+}
+
+.copyContainer:hover {
+  border-color: var(--accent);
+}
+
+.emailText {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  user-select: all;
+}
+
+.copyBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-quart);
+}
+
+.copyBtn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-primary);
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.copyBtn.copied {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btnText {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Skills Card Styles */
+.cardHeader {
+  margin-bottom: 28px;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.toggleSkillsWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  position: relative;
+  z-index: 5;
+}
+
+.toggleSkillsBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.toggleSkillsBtn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  box-shadow: 0 4px 20px rgba(56, 110, 203, 0.15);
+  transform: translateY(-1px);
+}
+
+.toggleArrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arrowRotate {
+  transform: rotate(180deg);
+}
+
+
+.skillGroup {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.skillGroup:hover {
+  border-color: var(--accent);
+  background: var(--bg-secondary);
+}
+
+.skillGroupHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.skillGroupIcon {
+  font-size: 1.1rem;
+}
+
+.skillGroupTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skillTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  transition: all 0.3s var(--ease-out-quart);
+}
+
+.skillTagIcon {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+/* Dynamic Hover Glow per Skill Tag */
+.skillTag:hover {
+  background: var(--tag-hover-bg, var(--accent-glow)) !important;
+  border-color: var(--tag-hover-border, var(--accent)) !important;
+  color: var(--tag-hover-text, var(--accent)) !important;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px var(--accent-glow), 
+              0 0 15px var(--tag-hover-border, transparent);
+}
+
+/* Timeline Card Styles */
+.timelineBentoHeader {
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.cardSub {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.timelineSplitGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.timelineColHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+
+.colIcon {
+  font-size: 1.1rem;
+}
+
+.timelineContainer {
+  position: relative;
+  padding-left: 24px;
+}
+
+.timelinePath {
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-secondary), transparent);
+  opacity: 0.35;
+  border-radius: 99px;
+  transition: opacity 0.3s ease;
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.timelineItem:last-child {
+  margin-bottom: 0;
+}
+
+.timelineMarker {
+  position: absolute;
+  left: -24px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 3px rgba(89, 236, 255, 0.1);
+  transition: all 0.3s var(--ease-out-quart);
+}
+
+.timelineItem:hover .timelineMarker {
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(89, 236, 255, 0.25), 
+              0 0 16px var(--accent);
+  transform: scale(1.15);
+}
+
+.timelineHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.timelinePlace {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.timelinePeriod {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.timelineRole {
+  font-size: 0.85rem;
+  color: #5eead4;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.timelineList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.timelineList li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.timelineList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Responsiveness */
+@media (max-width: 1100px) {
+  .cardBio {
+    grid-column: span 12;
+  }
+  
+  .cardAvatar {
+    grid-column: span 12;
+    min-height: auto;
+  }
+  
+  .cardSpecs {
+    grid-column: span 12;
+    min-height: auto;
+  }
+  
+  .cardSkills {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 768px) {
+  .bentoGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .bentoCard {
+    grid-column: span 12 !important;
+    padding: 24px;
+    border-radius: 20px;
+  }
+  
+  .skillsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timelineSplitGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .timelineHeaderRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
