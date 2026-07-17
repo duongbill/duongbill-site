@@ -166,19 +166,29 @@ const Contact = () => {
 				viewport={{ once: true }}
 				className="w-full bg-black-100/45 backdrop-blur-xl border border-white/10 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8"
 			>
-				<div className="flex flex-col md:flex-row items-center gap-6 md:text-left text-center">
-					<div className="w-24 h-24 relative flex-shrink-0 group overflow-hidden rounded-xl border border-white/10 shadow-lg">
-						<img
-							src="/images/qr_techcombank.jpg"
-							alt="Techcombank QR"
-							className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-						/>
+				<div className="flex flex-col md:flex-row items-center gap-8 md:text-left text-center">
+					{/* QR Code and Download Button Container */}
+					<div className="flex flex-col items-center gap-3 flex-shrink-0">
+						<div className="w-40 h-40 relative group overflow-hidden rounded-2xl border border-white/10 shadow-lg bg-white/5 p-2 flex items-center justify-center">
+							<img
+								src="/images/qr_techcombank.jpg"
+								alt="Techcombank QR"
+								className="w-full h-full object-contain rounded-xl transition-all duration-300 group-hover:scale-105"
+							/>
+						</div>
+						<a
+							href="/images/qr_techcombank.jpg"
+							download="Techcombank_QR_DuongBill.jpg"
+							className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white/80 hover:text-white transition-all text-xs font-semibold shadow-md active:scale-95 cursor-pointer"
+						>
+							📥 {t("contact.downloadQR")}
+						</a>
 					</div>
 					<div className="flex flex-col max-w-xl">
 						<h4 className="text-white font-bold text-xl flex items-center gap-2 justify-center md:justify-start">
 							☕ {t("contact.coffeeTitle")}
 						</h4>
-						<p className="text-white/60 text-sm mt-2 leading-relaxed">
+						<p className="text-white/60 text-sm mt-3 leading-relaxed">
 							{t("contact.coffeeDesc")}
 						</p>
 					</div>

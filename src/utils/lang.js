@@ -163,7 +163,8 @@ export const translations = {
       successMsg: "A humble thanks for reaching me out. I will respond to you as soon as possible.",
       errorMsg: "Sorry!! Something went wrong!!",
       coffeeTitle: "Buy Me a Coffee",
-      coffeeDesc: "If my portfolio or work has brought you value, feel free to send me a warm cup of coffee via this Techcombank QR code!"
+      coffeeDesc: "If my portfolio or work has brought you value, feel free to send me a warm cup of coffee via this Techcombank QR code!",
+      downloadQR: "Download QR Code"
     },
     footer: {
       workTogether: "Let's work together",
@@ -334,7 +335,8 @@ export const translations = {
       successMsg: "Trân trọng cảm ơn bạn đã liên hệ. Tôi sẽ phản hồi sớm nhất có thể.",
       errorMsg: "Xin lỗi!! Có lỗi xảy ra trong quá trình gửi!!",
       coffeeTitle: "Mời tôi cốc cà phê",
-      coffeeDesc: "Nếu trang portfolio hoặc những chia sẻ của tôi giúp ích cho bạn, hãy mời tôi một tách cà phê ấm áp qua mã QR Techcombank này nhé!"
+      coffeeDesc: "Nếu trang portfolio hoặc những chia sẻ của tôi giúp ích cho bạn, hãy mời tôi một tách cà phê ấm áp qua mã QR Techcombank này nhé!",
+      downloadQR: "Tải mã QR"
     },
     footer: {
       workTogether: "Hãy cùng nhau hợp tác",
