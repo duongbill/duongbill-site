@@ -104,75 +104,89 @@ const Contact = () => {
 	};
 
 	return (
-		<div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden relative">
-			<motion.div
-				variants={slideIn("left", "tween", 0.2, 1)}
-				className="flex-[0.75] bg-black-100/45 backdrop-blur-xl border border-white/10 p-8 rounded-2xl"
-			>
-				<p className="heroSubText">{t("contact.getInTouch")}</p>
-				<h3 className="heroHeadText">{t("contact.title")}</h3>
-				<form
-					ref={formRef}
-					onSubmit={handleSubmit}
-					className="mt-12 flex flex-col gap-8"
+		<div className="flex flex-col gap-6 w-full relative">
+			<div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden">
+				<motion.div
+					variants={slideIn("left", "tween", 0.2, 1)}
+					className="flex-[0.75] bg-black-100/45 backdrop-blur-xl border border-white/10 p-8 rounded-2xl"
 				>
-					<label className="flex flex-col">
-						<div className="flex justify-between items-center mb-4 flex-wrap gap-2">
-							<span className="text-white font-medium">{t("contact.yourName")}</span>
-							<span className="text-xs text-white/50 font-normal">({t("contact.anonymousText") || "Optional - send anonymously"})</span>
-						</div>
-						<input
-							type="text"
-							name="name"
-							value={form.name}
-							onChange={handleChange}
-							placeholder={t("contact.namePlaceholder")}
-							className="bg-tertiary/40 backdrop-blur-sm border border-white/5 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none focus:border-white/20 transition-all font-medium"
-						/>
-					</label>
-					<label className="flex flex-col">
-						<span className="text-white font-medium mb-4">{t("contact.yourMessage")}</span>
-						<textarea
-							rows={7}
-							name="message"
-							value={form.message}
-							onChange={handleChange}
-							placeholder={t("contact.messagePlaceholder")}
-							className="bg-tertiary/40 backdrop-blur-sm border border-white/5 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none focus:border-white/20 transition-all font-medium"
-						/>
-					</label>
-					<button
-						type="submit"
-						className="bg-[var(--accent)] hover:bg-[var(--accent-secondary)] py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl transition-all duration-300 transform hover:-translate-y-0.5"
+					<p className="heroSubText">{t("contact.getInTouch")}</p>
+					<h3 className="heroHeadText">{t("contact.title")}</h3>
+					<form
+						ref={formRef}
+						onSubmit={handleSubmit}
+						className="mt-12 flex flex-col gap-8"
 					>
-						{loading ? t("contact.sending") : t("contact.send")}
-					</button>
-				</form>
+						<label className="flex flex-col">
+							<div className="flex justify-between items-center mb-4 flex-wrap gap-2">
+								<span className="text-white font-medium">{t("contact.yourName")}</span>
+								<span className="text-xs text-white/50 font-normal">({t("contact.anonymousText") || "Optional - send anonymously"})</span>
+							</div>
+							<input
+								type="text"
+								name="name"
+								value={form.name}
+								onChange={handleChange}
+								placeholder={t("contact.namePlaceholder")}
+								className="bg-tertiary/40 backdrop-blur-sm border border-white/5 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none focus:border-white/20 transition-all font-medium"
+							/>
+						</label>
+						<label className="flex flex-col">
+							<span className="text-white font-medium mb-4">{t("contact.yourMessage")}</span>
+							<textarea
+								rows={7}
+								name="message"
+								value={form.message}
+								onChange={handleChange}
+								placeholder={t("contact.messagePlaceholder")}
+								className="bg-tertiary/40 backdrop-blur-sm border border-white/5 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none focus:border-white/20 transition-all font-medium"
+							/>
+						</label>
+						<button
+							type="submit"
+							className="bg-[var(--accent)] hover:bg-[var(--accent-secondary)] py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl transition-all duration-300 transform hover:-translate-y-0.5"
+						>
+							{loading ? t("contact.sending") : t("contact.send")}
+						</button>
+					</form>
+				</motion.div>
+				<motion.div
+					variants={slideIn("right", "tween", 0.2, 1)}
+					className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
+				>
+					<EarthCanvas />
+				</motion.div>
+			</div>
 
-				{/* Buy Me A Coffee Section */}
-				<div className="mt-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center gap-6">
-					<div className="w-28 h-28 relative flex-shrink-0 group overflow-hidden rounded-xl border border-white/10 shadow-lg">
+			{/* Buy Me A Coffee Section - Separate Card */}
+			<motion.div
+				variants={slideIn("up", "tween", 0.25, 1)}
+				initial="hidden"
+				whileInView="show"
+				viewport={{ once: true }}
+				className="w-full bg-black-100/45 backdrop-blur-xl border border-white/10 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8"
+			>
+				<div className="flex flex-col md:flex-row items-center gap-6 md:text-left text-center">
+					<div className="w-24 h-24 relative flex-shrink-0 group overflow-hidden rounded-xl border border-white/10 shadow-lg">
 						<img
 							src="/images/qr_techcombank.jpg"
 							alt="Techcombank QR"
 							className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
 						/>
 					</div>
-					<div className="flex flex-col text-center sm:text-left">
-						<h4 className="text-white font-semibold text-base flex items-center gap-2 justify-center sm:justify-start">
+					<div className="flex flex-col max-w-xl">
+						<h4 className="text-white font-bold text-xl flex items-center gap-2 justify-center md:justify-start">
 							☕ {t("contact.coffeeTitle")}
 						</h4>
-						<p className="text-white/60 text-xs mt-1.5 leading-relaxed max-w-sm">
+						<p className="text-white/60 text-sm mt-2 leading-relaxed">
 							{t("contact.coffeeDesc")}
 						</p>
 					</div>
 				</div>
-			</motion.div>
-			<motion.div
-				variants={slideIn("right", "tween", 0.2, 1)}
-				className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
-			>
-				<EarthCanvas />
+				<div className="flex flex-col items-center md:items-end justify-center">
+					<span className="text-white/40 text-xs uppercase tracking-widest font-semibold">Techcombank QR Pay</span>
+					<span className="text-[var(--accent)] font-mono text-lg font-bold mt-1">NGUYEN HAI DUONG</span>
+				</div>
 			</motion.div>
 
 			{/* Custom Glassmorphism Toast Notification */}
