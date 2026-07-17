@@ -13,8 +13,10 @@ const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: f
 const BackgroundCanvas = dynamic(() => import('@/components/webgl/BackgroundCanvas'), { ssr: false });
 import Preloader from '@/components/Preloader';
 const StarsCanvas = dynamic(() => import('@/components/canvas/Stars'), { ssr: false });
+import { useDragToScroll } from '@/hooks/useDragToScroll';
 
 export default function Layout({ children }) {
+  useDragToScroll();
   return (
     <LanguageProvider>
       <WebGLProvider>
