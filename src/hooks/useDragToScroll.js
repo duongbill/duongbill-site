@@ -29,7 +29,7 @@ export function useDragToScroll() {
 
       isDown = true;
       document.body.style.cursor = 'grabbing';
-      lastY = e.pageY;
+      lastY = e.clientY;
       velocityY = 0;
       if (rafId) cancelAnimationFrame(rafId);
     };
@@ -37,12 +37,12 @@ export function useDragToScroll() {
     const onMouseMove = (e) => {
       if (!isDown) return;
       e.preventDefault(); // Prevents selection
-      const walk = e.pageY - lastY;
+      const walk = e.clientY - lastY;
       velocityY = walk;
-      lastY = e.pageY;
+      lastY = e.clientY;
 
       window.scrollTo({
-        top: window.pageYOffset - walk,
+        top: window.scrollY - walk,
         behavior: 'auto'
       });
     };
@@ -56,7 +56,7 @@ export function useDragToScroll() {
       const momentum = () => {
         if (Math.abs(velocityY) > 0.5) {
           window.scrollTo({
-            top: window.pageYOffset - velocityY,
+            top: window.scrollY - velocityY,
             behavior: 'auto'
           });
           velocityY *= 0.95;
