@@ -62,6 +62,16 @@ export default function CustomCursor() {
       dot.style.opacity = '1';
     };
 
+    const onMouseDown = () => {
+      cursor.classList.add('custom-cursor--active');
+      dot.classList.add('custom-cursor-dot--active');
+    };
+
+    const onMouseUp = () => {
+      cursor.classList.remove('custom-cursor--active');
+      dot.classList.remove('custom-cursor-dot--active');
+    };
+
     // Lerp animation loop
     let raf;
     const lerp = (start, end, factor) => start + (end - start) * factor;
@@ -79,6 +89,8 @@ export default function CustomCursor() {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseleave', onMouseLeave);
     document.addEventListener('mouseenter', onMouseEnter);
+    document.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mouseup', onMouseUp);
 
     raf = requestAnimationFrame(animate);
 
@@ -86,6 +98,8 @@ export default function CustomCursor() {
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseleave', onMouseLeave);
       document.removeEventListener('mouseenter', onMouseEnter);
+      document.removeEventListener('mousedown', onMouseDown);
+      document.removeEventListener('mouseup', onMouseUp);
       cancelAnimationFrame(raf);
     };
 
@@ -113,7 +127,10 @@ export default function CustomCursor() {
           z-index: 99999;
           transition: width 0.4s var(--ease-out-expo),
                       height 0.4s var(--ease-out-expo),
+                      top 0.4s var(--ease-out-expo),
+                      left 0.4s var(--ease-out-expo),
                       border-color 0.3s,
+                      background-color 0.3s,
                       opacity 0.3s;
           mix-blend-mode: difference;
           will-change: transform;
@@ -125,6 +142,14 @@ export default function CustomCursor() {
           left: -36px;
           border-color: var(--accent);
           background: var(--accent-glow);
+        }
+        .custom-cursor--active {
+          width: 30px;
+          height: 30px;
+          top: -15px;
+          left: -15px;
+          border-color: var(--accent);
+          background: rgba(56, 110, 203, 0.25);
         }
         .custom-cursor--labeled::after {
           content: attr(data-label);
@@ -150,7 +175,19 @@ export default function CustomCursor() {
           pointer-events: none;
           z-index: 99999;
           will-change: transform;
-          transition: opacity 0.3s;
+          transition: width 0.3s var(--ease-out-expo),
+                      height 0.3s var(--ease-out-expo),
+                      top 0.3s var(--ease-out-expo),
+                      left 0.3s var(--ease-out-expo),
+                      background-color 0.3s,
+                      opacity 0.3s;
+        }
+        .custom-cursor-dot--active {
+          width: 12px;
+          height: 12px;
+          top: -6px;
+          left: -6px;
+          background: #ffffff;
         }
 
         @media (hover: none), (pointer: coarse) {
