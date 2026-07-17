@@ -32,12 +32,22 @@ const Contact = () => {
 		}
 		setLoading(true);
 		try {
+			const payload = {
+				name: form.name,
+				message: form.message,
+				clientInfo: {
+					screenResolution: typeof window !== "undefined" ? `${window.screen.width}x${window.screen.height}` : "Unknown",
+					submitTime: new Date().toLocaleString(),
+					currentPage: typeof window !== "undefined" ? window.location.href : "Unknown",
+				}
+			};
+
 			const response = await fetch("/api/contact", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(form),
+				body: JSON.stringify(payload),
 			});
 
 			const data = await response.json();
