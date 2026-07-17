@@ -231,9 +231,9 @@ export const translations = {
       periods: {
         present: "Hiện tại",
         zenshoPeriod: "09/2025 - 12/2025",
-        mhPeriod: "01/2026 - 06/2026",
-        epuPeriod: "2021 - 2025",
-        selfPeriod: "2023 - Hiện tại"
+        mhPeriod: "01/2026 - Hiện nay",
+        epuPeriod: "2022 - Hiện nay",
+        selfPeriod: "2023 - Hiện nay"
       },
       roles: {
         mhRole: "Thực tập sinh - Học việc Full-Stack",
