@@ -1,7 +1,7 @@
 "use client";
 import { slideIn } from "@/utils/motion";
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { SectionWrapper } from "@/components/HigherOrderComponents";
 import { EarthCanvas } from "@/components/canvas";
 import { useLanguage } from "@/context/LanguageContext";
@@ -16,6 +16,24 @@ const Contact = () => {
 	});
 
 	const [loading, setLoading] = useState(false);
+	const [notification, setNotification] = useState<{
+		show: boolean;
+		type: "success" | "error";
+		message: string;
+	}>({
+		show: false,
+		type: "success",
+		message: "",
+	});
+
+	useEffect(() => {
+		if (notification.show) {
+			const timer = setTimeout(() => {
+				setNotification((prev) => ({ ...prev, show: false }));
+			}, 4000);
+			return () => clearTimeout(timer);
+		}
+	}, [notification.show]);
 
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -27,7 +45,11 @@ const Contact = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (!form.message.trim()) {
-			alert(t("contact.messagePlaceholder") || "Please write your message.");
+			setNotification({
+				show: true,
+				type: "error",
+				message: t("contact.messagePlaceholder") || "Please write your message.",
+			});
 			return;
 		}
 		setLoading(true);
@@ -54,23 +76,35 @@ const Contact = () => {
 
 			if (response.ok) {
 				setLoading(false);
-				alert(t("contact.successMsg") || "Message sent successfully!");
+				setNotification({
+					show: true,
+					type: "success",
+					message: t("contact.successMsg") || "Message sent successfully!",
+				});
 				setForm({
 					name: "",
 					message: "",
 				});
 			} else {
 				setLoading(false);
-				alert(data.error || t("contact.errorMsg") || "Failed to send message.");
+				setNotification({
+					show: true,
+					type: "error",
+					message: data.error || t("contact.errorMsg") || "Failed to send message.",
+				});
 			}
 		} catch (error) {
 			setLoading(false);
-			alert(t("contact.errorMsg") || "Something went wrong.");
+			setNotification({
+				show: true,
+				type: "error",
+				message: t("contact.errorMsg") || "Something went wrong.",
+			});
 		}
 	};
 
 	return (
-		<div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden">
+		<div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden relative">
 			<motion.div
 				variants={slideIn("left", "tween", 0.2, 1)}
 				className="flex-[0.75] bg-black-100/45 backdrop-blur-xl border border-white/10 p-8 rounded-2xl"
@@ -121,6 +155,44 @@ const Contact = () => {
 			>
 				<EarthCanvas />
 			</motion.div>
+
+			{/* Custom Glassmorphism Toast Notification */}
+			<AnimatePresence>
+				{notification.show && (
+					<motion.div
+						initial={{ opacity: 0, y: 50, scale: 0.9 }}
+						animate={{ opacity: 1, y: 0, scale: 1 }}
+						exit={{ opacity: 0, y: 20, scale: 0.9 }}
+						transition={{ duration: 0.3, ease: "easeOut" }}
+						className={`fixed bottom-6 right-6 z-[9999] flex items-center gap-4 py-4 px-6 rounded-2xl border backdrop-blur-md shadow-2xl ${
+							notification.type === "success"
+								? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
+								: "bg-rose-500/10 border-rose-500/20 text-rose-400"
+						}`}
+						style={{
+							boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.4)",
+						}}
+					>
+						<span className="text-2xl flex items-center justify-center">
+							{notification.type === "success" ? "✨" : "⚠️"}
+						</span>
+						<div className="flex flex-col gap-0.5 max-w-[280px]">
+							<span className="font-bold text-xs uppercase tracking-wider text-white">
+								{notification.type === "success" ? "Success" : "Error"}
+							</span>
+							<span className="text-sm text-white/80 font-normal leading-relaxed">
+								{notification.message}
+							</span>
+						</div>
+						<button
+							onClick={() => setNotification({ ...notification, show: false })}
+							className="ml-2 text-white/30 hover:text-white/80 transition-colors focus:outline-none text-sm p-1"
+						>
+							✕
+						</button>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };
