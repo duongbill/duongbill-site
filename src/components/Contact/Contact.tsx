@@ -148,6 +148,25 @@ const Contact = () => {
 						{loading ? t("contact.sending") : t("contact.send")}
 					</button>
 				</form>
+
+				{/* Buy Me A Coffee Section */}
+				<div className="mt-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center gap-6">
+					<div className="w-28 h-28 relative flex-shrink-0 group overflow-hidden rounded-xl border border-white/10 shadow-lg">
+						<img
+							src="/images/qr_techcombank.jpg"
+							alt="Techcombank QR"
+							className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+						/>
+					</div>
+					<div className="flex flex-col text-center sm:text-left">
+						<h4 className="text-white font-semibold text-base flex items-center gap-2 justify-center sm:justify-start">
+							☕ {t("contact.coffeeTitle")}
+						</h4>
+						<p className="text-white/60 text-xs mt-1.5 leading-relaxed max-w-sm">
+							{t("contact.coffeeDesc")}
+						</p>
+					</div>
+				</div>
 			</motion.div>
 			<motion.div
 				variants={slideIn("right", "tween", 0.2, 1)}
