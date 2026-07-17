@@ -29,12 +29,21 @@ export default function GallerySection() {
   const [filter, setFilter] = useState('ALL');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const { t } = useLanguage();
 
   // Filter items
   const filteredItems = galleryItems.filter(
     (item) => filter === 'ALL' || item.category === filter
   );
+
+  // Reset showAll when filter changes
+  useEffect(() => {
+    setShowAll(false);
+  }, [filter]);
+
+  const initialLimit = 3;
+  const visibleItems = showAll ? filteredItems : filteredItems.slice(0, initialLimit);
 
   // Reset zoom state on image change
   useEffect(() => {
@@ -96,7 +105,7 @@ export default function GallerySection() {
     };
   }, []);
 
-  // Animate grid elements when filter changes
+  // Animate grid elements when filter or showAll changes
   useEffect(() => {
     const cards = gridRef.current?.querySelectorAll(`.${styles.gridItem}`);
     if (cards && cards.length > 0) {
@@ -105,7 +114,7 @@ export default function GallerySection() {
         { opacity: 1, y: 0, scale: 1, stagger: 0.03, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }
       );
     }
-  }, [filter]);
+  }, [filter, showAll]);
 
   // Lightbox Keyboard Navigation
   useEffect(() => {
@@ -184,7 +193,7 @@ export default function GallerySection() {
 
         {/* Gallery Grid */}
         <div ref={gridRef} className={styles.grid}>
-          {filteredItems.map((item, index) => (
+          {visibleItems.map((item, index) => (
             <div
               key={item.image + index}
               className={styles.gridItem}
@@ -238,6 +247,31 @@ export default function GallerySection() {
             </div>
           ))}
         </div>
+
+        {/* See More / Show Less Button */}
+        {filteredItems.length > initialLimit && (
+          <div className={styles.seeMoreContainer}>
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className={styles.seeMoreBtn}
+            >
+              <span>{showAll ? t('gallery.seeLess') : t('gallery.seeMore')}</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={`${styles.seeMoreIcon} ${showAll ? styles.rotateIcon : ''}`}
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        )}
 
       </div>
 

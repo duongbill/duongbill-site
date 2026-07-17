@@ -146,7 +146,9 @@ export const translations = {
       profileShoot: "Profile Shoot",
       candidShot: "Candid Shot",
       studioSession1: "Studio Session 1",
-      studioSession2: "Studio Session 2"
+      studioSession2: "Studio Session 2",
+      seeMore: "See More",
+      seeLess: "Show Less"
     },
     contact: {
       getInTouch: "Get in Touch",
@@ -318,7 +320,9 @@ export const translations = {
       profileShoot: "Chụp ảnh chân dung",
       candidShot: "Bức ảnh tự nhiên",
       studioSession1: "Buổi chụp Studio 1",
-      studioSession2: "Buổi chụp Studio 2"
+      studioSession2: "Buổi chụp Studio 2",
+      seeMore: "Xem thêm",
+      seeLess: "Thu gọn"
     },
     contact: {
       getInTouch: "Kết nối với tôi",
