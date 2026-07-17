@@ -49,13 +49,13 @@ export default function AboutSection() {
         },
       });
 
-      // Animate skill tags inside cards
-      gsap.from('[data-animate="skill-tag"]', {
-        scale: 0.85,
+      // Animate skill rows inside cards
+      gsap.from('[data-animate="skill-row"]', {
+        y: 15,
         opacity: 0,
-        stagger: 0.02,
-        duration: 0.5,
-        ease: 'back.out(1.5)',
+        stagger: 0.04,
+        duration: 0.6,
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: `.${styles.cardSkills}`,
           start: 'top 95%',
@@ -367,37 +367,13 @@ export default function AboutSection() {
               <h3 className={styles.cardTitle}>{t('about.techStackTitle')}</h3>
             </div>
             
-            <div className={styles.skillsGrid}>
+            <div className={styles.specsList}>
               {skillGroups.slice(0, showAllSkills ? skillGroups.length : 4).map((group) => (
-                <div key={group.title} className={styles.skillGroup}>
-                  <div className={styles.skillGroupHeader}>
-                    <span className={styles.skillGroupIcon} aria-hidden="true">
-                      {group.icon}
-                    </span>
-                    <h4 className={styles.skillGroupTitle}>{group.title}</h4>
-                  </div>
-                  
-                  <div className={styles.skillTags}>
-                    {group.items.map((item) => (
-                      <span
-                        key={item.name}
-                        className={styles.skillTag}
-                        data-animate="skill-tag"
-                        style={{
-                          '--tag-hover-bg': item.hover?.bg,
-                          '--tag-hover-border': item.hover?.border,
-                          '--tag-hover-text': item.hover?.text,
-                        }}
-                      >
-                        {item.icon && (
-                          <span className={styles.skillTagIcon} aria-hidden="true">
-                             {item.icon}
-                          </span>
-                        )}
-                        {item.name}
-                      </span>
-                    ))}
-                  </div>
+                <div key={group.title} className={styles.specItem} data-animate="skill-row">
+                  <span className={styles.specLabel}>{group.title}</span>
+                  <span className={styles.specValue}>
+                    {group.items.map(item => item.name).join(', ')}
+                  </span>
                 </div>
               ))}
             </div>
