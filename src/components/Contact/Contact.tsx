@@ -12,7 +12,6 @@ const Contact = () => {
 
 	const [form, setForm] = useState({
 		name: "",
-		email: "",
 		message: "",
 	});
 
@@ -27,8 +26,8 @@ const Contact = () => {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (!form.name || !form.email || !form.message) {
-			alert(t("contact.errorMsg") || "Please fill in all fields.");
+		if (!form.message.trim()) {
+			alert(t("contact.messagePlaceholder") || "Please write your message.");
 			return;
 		}
 		setLoading(true);
@@ -48,7 +47,6 @@ const Contact = () => {
 				alert(t("contact.successMsg") || "Message sent successfully!");
 				setForm({
 					name: "",
-					email: "",
 					message: "",
 				});
 			} else {
@@ -75,24 +73,16 @@ const Contact = () => {
 					className="mt-12 flex flex-col gap-8"
 				>
 					<label className="flex flex-col">
-						<span className="text-white font-medium mb-4">{t("contact.yourName")}</span>
+						<div className="flex justify-between items-center mb-4 flex-wrap gap-2">
+							<span className="text-white font-medium">{t("contact.yourName")}</span>
+							<span className="text-xs text-white/50 font-normal">({t("contact.anonymousText") || "Optional - send anonymously"})</span>
+						</div>
 						<input
 							type="text"
 							name="name"
 							value={form.name}
 							onChange={handleChange}
 							placeholder={t("contact.namePlaceholder")}
-							className="bg-tertiary/40 backdrop-blur-sm border border-white/5 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none focus:border-white/20 transition-all font-medium"
-						/>
-					</label>
-					<label className="flex flex-col">
-						<span className="text-white font-medium mb-4">{t("contact.yourEmail")}</span>
-						<input
-							type="email"
-							name="email"
-							value={form.email}
-							onChange={handleChange}
-							placeholder={t("contact.emailPlaceholder")}
 							className="bg-tertiary/40 backdrop-blur-sm border border-white/5 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none focus:border-white/20 transition-all font-medium"
 						/>
 					</label>
